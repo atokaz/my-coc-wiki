@@ -5,7 +5,7 @@
 
 ## Ξ 主笔 Ξ
 
-<div class="collage-card">
+<div class="collage-card" markdown="1">
 - **奥蒂莉亚**：苇下记社现任“不可见的主笔”
 - **常驻调查员**：待补充……
 </div>
