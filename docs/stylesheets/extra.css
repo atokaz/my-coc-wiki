@@ -1,24 +1,48 @@
 /* ==========================================
-   苇下记社 — 报纸风格 终极覆盖版
-   解决样式被主题覆盖的问题
+   苇下记社 — 雨夜报纸·毛玻璃·拼贴 完整样式
+   直接覆盖 extra.css 全部内容即可
    ========================================== */
 
-/* ----- 1. 全局报纸纹理背景 ----- */
+/* ----- 引入 Google Fonts（如需中文字体可后续再加） ----- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap');
+
+/* ========== 1. 全局背景与基调 ========== */
 html body {
+    /* 旧纸张纹理背景（在线纹理图片） */
     background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png') !important;
     background-color: #f4f1ea !important;
     color: #2c2c2c !important;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Noto Serif SC', 'Georgia', 'Times New Roman', serif;
 }
 
-/* ----- 2. 内容区——报纸核心区域 ----- */
-/* 针对 MkDocs Material 主题的实际结构，用更具体的选择器 */
-.md-content,
-.md-content__inner,
-.md-typeset {
+/* ========== 2. 顶部导航栏：毛玻璃融入效果 ========== */
+.md-header {
+    background-color: rgba(244, 241, 234, 0.6) !important; /* 半透明纸张色 */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
+}
+
+/* 搜索输入框透明化 */
+.md-search__input {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 20px !important;
+    color: #2c2c2c !important;
+}
+
+/* 导航文字和占位符颜色 */
+.md-header__topic,
+.md-header__title,
+.md-search__input::placeholder {
+    color: #2c2c2c !important;
+}
+
+/* ========== 3. 报纸核心内容区（确保无多重框） ========== */
+/* 最外层容器：报纸效果 */
+.md-content {
     max-width: 900px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: 2rem auto !important;
     background-color: rgba(255, 255, 255, 0.85) !important;
     padding: 2.5rem !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2) !important;
@@ -26,18 +50,26 @@ html body {
     border-radius: 4px !important;
 }
 
+/* 内层容器彻底透明化，消除嵌套边框和阴影 */
+.md-content__inner,
+.md-typeset {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
 /* 手机端适配 */
 @media (max-width: 768px) {
-    .md-content,
-    .md-content__inner,
-    .md-typeset {
+    .md-content {
         max-width: 100% !important;
         margin: 1rem !important;
         padding: 1.5rem !important;
     }
 }
 
-/* ----- 3. 表格完全融入报纸 ----- */
+/* ========== 4. 表格融入报纸（去白底） ========== */
 .md-typeset__table table,
 .md-typeset table {
     background-color: transparent !important;
@@ -49,14 +81,16 @@ html body {
     background-color: rgba(0, 0, 0, 0.06) !important;
     border-bottom: 2px solid #8b6b4d !important;
     font-weight: bold;
+    padding: 0.5em 1em;
 }
 
 .md-typeset table td {
     background-color: transparent !important;
     border-bottom: 1px solid #d0c8b0 !important;
+    padding: 0.5em 1em;
 }
 
-/* ----- 4. 拼贴卡片毛玻璃效果 ----- */
+/* ========== 5. 拼贴卡片：毛玻璃效果 ========== */
 .collage-card {
     background: rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(10px) !important;
@@ -67,11 +101,30 @@ html body {
     margin: 1.5rem 0 !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
     color: #2c2c2c !important;
+    transition: all 0.3s ease !important;
 }
 
 .collage-card:hover {
     background: rgba(255, 255, 255, 0.4) !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
     transform: translateY(-2px) !important;
-    transition: all 0.3s ease !important;
+}
+
+/* 确保卡片内列表样式正常 */
+.collage-card ul,
+.collage-card ol {
+    margin: 0;
+    padding-left: 1.5em;
+}
+
+/* ========== 6. 页脚及其他杂项 ========== */
+/* 让页脚也透明，避免底部出现色块 */
+.md-footer {
+    background-color: transparent !important;
+    color: #2c2c2c !important;
+}
+
+/* 如有需要，隐藏页脚底条 */
+.md-footer-meta {
+    background-color: transparent !important;
 }
