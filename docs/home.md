@@ -110,7 +110,7 @@ html, body {
 
 <div class="collage-card rotate-2">
   <ul>
-    <li><strong>奥维莉雅</strong>：苇下记社现任“不可见的主笔”</li>
+    <li><strong>奥丽维娅</strong>：苇下记社现任“不可见的主笔”</li>
   </ul>
 </div>
 
