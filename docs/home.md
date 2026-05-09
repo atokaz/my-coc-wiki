@@ -117,11 +117,18 @@ html, body {
 .collage-card {
     background: rgba(255,255,255,0.1) !important;
     backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     border: 1px solid rgba(255,255,255,0.2) !important;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    color: #e8e2d2;
+    border-radius: 8px !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+    color: #e8e2d2 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.collage-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
 /* 手机端：堆叠布局 */
@@ -166,7 +173,7 @@ html, body {
             <!-- 手动维护目录，与你的文章标题同步 -->
             <ul>
                 <li><a href="#苇下">苇下</a></li>
-                <li><a href="#主笔">Ξ 主笔</a></li>
+                <li><a href="#主笔">主笔</a></li>
                 <li><a href="#事件记录进行中">事件记录·进行中</a></li>
                 <li><a href="#驻社名录">驻社名录</a></li>
             </ul>
