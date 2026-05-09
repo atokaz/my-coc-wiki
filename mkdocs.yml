@@ -19,5 +19,5 @@ markdown_extensions:
 docs_dir: docs
 
 nav:
-  - 苇下记社: landing.md
-  - 档案室: home.md
+  - 苇下记社: index.md      # 欢迎页
+  - 档案室: home.md         # 主内容
