@@ -1,0 +1,19 @@
+site_name: 苇下记社
+site_description: 个人coclog整合wiki
+site_author: 暗河的奥迪莉亚
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+
+docs_dir: docs
