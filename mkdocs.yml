@@ -20,3 +20,4 @@ docs_dir: docs
 
 nav:
   - 苇下记社: landing.md
+  - 档案室: home.md
