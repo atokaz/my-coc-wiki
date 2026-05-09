@@ -22,3 +22,6 @@ nav:
   - 苇下记社: index.md
   - 档案室: home.md
   - 驻社名录: roster.md
+
+extra_css:
+  - stylesheets/extra.css
