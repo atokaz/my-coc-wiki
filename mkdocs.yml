@@ -23,8 +23,8 @@ nav:
   - 档案室: home.md
   - 驻社名录: roster.md
 
-extra_css:
-  - stylesheets/extra.css
+#extra_css:
+#  - stylesheets/extra.css
 
-extra_javascript:
-  - javascripts/extra.js
+#extra_javascript:
+#  - javascripts/extra.js
