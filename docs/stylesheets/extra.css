@@ -17,3 +17,41 @@ body {
 .md-header__topic, h1, h2, h3 {
     font-family: 'Cinzel', 'Times New Roman', serif;
 }
+.landing h1 {
+    animation: fadeInUp 0.8s ease-out;
+}
+.landing .subtitle {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+.welcome-button {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+    text-align: center;
+    margin-top: 3em;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.glass-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 48px !important;
+    padding: 0.6em 1.8em !important;
+    font-size: 1.4em !important;
+    color: #2c3e2f !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.35) !important;
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.7);
+}
