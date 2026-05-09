@@ -1,6 +1,6 @@
 site_name: 苇下记社
 site_description: 个人coclog整合wiki
-site_author: 暗河的奥迪莉亚
+site_author: 奥丽维娅
 
 theme:
   name: material
@@ -15,6 +15,7 @@ markdown_extensions:
       permalink: true
   - tables
   - footnotes
+  - md_in_html   # 允许在 md 文件中写 <style> 和 <div>
 
 docs_dir: docs
 
@@ -24,4 +25,4 @@ nav:
   - 驻社名录: roster.md
 
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/extra.css   # 保留，以后用来放公共样式
