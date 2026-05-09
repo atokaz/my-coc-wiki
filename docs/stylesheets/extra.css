@@ -62,7 +62,11 @@ body {
   padding: 1rem 1.2rem;
   margin: 1.5rem 0;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.15);
-  transform: rotate(0.5deg);
   position: relative;
   z-index: 1;
 }
+
+.rotate-1 { transform: rotate(0.5deg); }
+.rotate-2 { transform: rotate(-0.8deg); }
+.rotate-3 { transform: rotate(1.2deg); }
+.rotate-4 { transform: rotate(-1.5deg); }
