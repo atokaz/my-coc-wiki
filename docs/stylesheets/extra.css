@@ -39,7 +39,7 @@ body {
   border-bottom: 1px solid #d0c8b0;
 }
 
-/* ========== 4. 专栏卡片：毛玻璃效果 ========== */
+/* ========== 4. 毛玻璃效果卡片 ========== */
 .article-card {
   background: rgba(255, 255, 255, 0.25) !important;
   backdrop-filter: blur(10px);
