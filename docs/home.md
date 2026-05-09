@@ -181,7 +181,7 @@ html, body {
     </div>
 
     <!-- 中间报纸区域（最深色块） -->
-    <div class="newspaper">
+    <div class="newspaper" markdown="1">
 
         <!-- 以下是你原来的 Markdown 内容，包裹在 newspaper 容器内 -->
         # 苇下
