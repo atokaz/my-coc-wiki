@@ -5,10 +5,9 @@
 
 ## Ξ 主笔 Ξ
 
-<div class="collage-card">
+<div class="collage-card rotate-2">
   <ul>
     <li><strong>奥蒂莉亚</strong>：苇下记社现任“不可见的主笔”</li>
-    <li><strong>常驻调查员</strong>：待补充……</li>
   </ul>
 </div>
 
