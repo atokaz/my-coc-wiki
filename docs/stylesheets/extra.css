@@ -193,3 +193,11 @@ body.landing-page {
         transform: translateY(0);
     }
 }
+
+.md-sidebar {
+    background: rgba(30, 40, 25, 0.2);
+    backdrop-filter: blur(8px);
+}
+.md-nav__item .md-nav__link {
+    color: #2c3e2f;
+}
