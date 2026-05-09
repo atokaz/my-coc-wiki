@@ -1,3 +1,15 @@
+.md-header, .md-tabs {
+    background: #1a2c1e !important;  /* 深墨绿色，符合苇下记社氛围 */
+    border-bottom: none;
+}
+
+.md-header-nav__button, .md-tabs__link {
+    color: #e8e6df;
+}
+
+.md-search__form {
+    background-color: rgba(255, 255, 255, 0.15);
+}
 var clickSound = new Audio('/my-coc-wiki/sounds/click.mp3');
 var audioEnabled = false;
 
