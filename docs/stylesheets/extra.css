@@ -1,18 +1,1 @@
-[data-md-color-scheme="default"] {
-  --md-default-bg-color: #fdf8ed;
-  --md-primary-fg-color: #4a3b2c;
-  --md-accent-fg-color: #8b6b4d;
-}
-body {
-  background-color: #fdf8ed;
-  font-family: 'Crimson Text', 'Times New Roman', serif;
-}
-.md-header__topic, h1, h2, h3 {
-  font-family: 'Cinzel', 'Times New Roman', serif;
-}
-.md-header {
-  background-color: #1a2c1e;
-}
-.md-tabs {
-  background-color: #1a2c1e;
-}
+
