@@ -1,88 +1,84 @@
-/* ==========================================
-   苇下记社 — 雨夜档案室 主题样式
-   ========================================== */
-
-/* ----- 1. 雨夜背景 ----- */
-body {
-    /* 深灰蓝底色，模拟雨夜的天空 */
-    background-color: #1a1e26 !important;
-    /* 暂时保留系统默认字体，之后再说 */
-}
-
-/* ----- 2. 报纸内容区 ----- */
-/* 这是包裹你正文的白色容器，我们把它变成泛黄纸张 */
+/* ========== 1. 报纸核心区域 ========== */
+/* 只让文章内容变窄，不碰导航栏 */
 .md-main__inner {
-    background-color: #f4f1ea;           /* 泛黄纸色 */
-    color: #2c2c2c;                      /* 深墨色文字 */
-    padding: 2.5rem;                     /* 内边距，让文字不贴边 */
-    margin: 2rem auto;                   /* 上下留空，左右居中 */
-    max-width: 900px;                    /* 限制宽度，像一张真实的报纸 */
-    
-    /* 纸张阴影：让报纸“浮”在雨夜背景之上 */
-    box-shadow: 
-        0 0 40px rgba(0, 0, 0, 0.8),    /* 周围暗影 */
-        0 0 10px rgba(0, 0, 0, 0.5);    /* 近距离投影 */
-    
-    /* 纸张边缘的细边框 */
-    border: 1px solid #c0b090;
+  max-width: 900px;           /* 桌面端最大宽度 */
+  margin: 0 auto;            /* 居中 */
+  padding: 2rem 1.5rem;
 }
 
-/* ----- 3. 纸张噪点纹理（让报纸有做旧颗粒感） ----- */
-/* 用纯CSS生成，不需要图片文件 */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* SVG噪点滤镜 */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;                /* 让鼠标可以穿透这层纹理 */
-    z-index: 1000;                       /* 放在最上层 */
+/* 让小屏幕设备上也能完整显示，不出现滚动条 */
+@media (max-width: 768px) {
+  .md-main__inner {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}
+/* ========== 1. 全局报纸纹理 ========== */
+/* 把整个网页背景变成旧纸张，但侧边栏和导航栏不受影响 */
+body {
+  /* 我会给你一个在线纹理图片的链接，你可以直接使用 */
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  background-color: #f4f1ea; /* 泛黄底色，和纹理叠加 */
+  color: #2c2c2c;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
-/* ----- 4. 事件表格去白底 ----- */
-/* 默认的MkDocs表格是白底的，我们让它透出报纸色 */
+/* ========== 2. 报纸核心区域 ========== */
+/* 让中间的文章内容更聚焦，并加上报纸特有的阴影和边框 */
+.md-main__inner {
+  max-width: 900px;
+  margin: 2rem auto;          /* 上下留出间距 */
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色，让背景纹理透过来 */
+  padding: 2.5rem;
+  box-shadow: 0 0 30px rgba(0,0,0,0.2); /* 报纸周围的阴影 */
+  border: 1px solid #c0b090;   /* 报纸边缘的细线 */
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+  .md-main__inner {
+    max-width: 100%;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* ========== 3. 去掉表格的白底 ========== */
+/* 让你的事件记录表格融入报纸纹理 */
 .md-typeset table {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border-collapse: collapse;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
-
-/* 表头：淡淡的分隔线 */
 .md-typeset table th {
-    background-color: rgba(0, 0, 0, 0.06);
-    font-weight: bold;
-    border-bottom: 2px solid #8b6b4d;
-    padding: 0.5em 1em;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid #8b6b4d;
 }
-
-/* 单元格：去掉白底，加横线 */
 .md-typeset table td {
-    background-color: transparent !important;
-    border-bottom: 1px solid #d0c8b0;
-    padding: 0.5em 1em;
+  background-color: transparent !important;
+  border-bottom: 1px solid #d0c8b0;
 }
-
-/* ----- 5. 拼贴卡片样式（你之前要的） ----- */
+/* ========== 4. 拼贴卡片：毛玻璃效果 ========== */
 .collage-card {
-    background: #fffef7;
-    border: 1px solid #c0b090;
-    padding: 1rem 1.2rem;
-    margin: 1.5rem 0;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
-    transform: rotate(0.5deg);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* 毛玻璃核心三要素 */
+  background: rgba(255, 255, 255, 0.25); /* 半透明背景 */
+  backdrop-filter: blur(10px);           /* 背景模糊 */
+  -webkit-backdrop-filter: blur(10px);   /* 兼容Safari浏览器 */
+  
+  /* 边缘和阴影 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;            /* 微微的圆角，更柔和 */
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  
+  /* 文字颜色 */
+  color: #2c2c2c;
 }
 
+/* 鼠标划过时，微微增强立体感 */
 .collage-card:hover {
-    transform: rotate(0deg) scale(1.02);
-    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* 卡片内的列表保持正常 */
-.collage-card ul {
-    margin: 0;
-    padding-left: 1.5em;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 }
