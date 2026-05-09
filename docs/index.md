@@ -40,22 +40,21 @@ h1 {
 /* 按钮改成毛玻璃卡片风格（和奥蒂莉亚卡片一致） */
 .glass-btn {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255,255,255,0.1) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
     border-radius: 8px !important;
     padding: 0.8em 2em !important;
     font-size: 1.3rem !important;
     color: #e8e2d2 !important;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .glass-btn:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-color: rgba(255, 255, 255, 0.4) !important;
     transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
 /* 顶部导航栏保持深色毛玻璃 */
