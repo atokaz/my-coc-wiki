@@ -15,5 +15,5 @@ hide:
 </div>
 
 <script>
-  document.body.classList.add('landing');
+    document.body.classList.add('landing-page');
 </script>
