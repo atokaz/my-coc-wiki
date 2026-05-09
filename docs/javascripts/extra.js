@@ -1,10 +1,23 @@
 var clickSound = new Audio('/my-coc-wiki/sounds/click.mp3');
+var audioEnabled = false;
 
-function playClick(event) {
-    let target = event.target.closest('a, .md-button, .md-nav__link');
-    if (target) {
-        clickSound.play().catch(e => console.log("音频播放失败", e));
+function playClickSound() {
+    if (audioEnabled) {
+        clickSound.play().catch(function(e) {});
     }
 }
 
-document.addEventListener('click', playClick);
+function enableAudio() {
+    if (!audioEnabled) {
+        audioEnabled = true;
+        clickSound.play().then(function() {
+            clickSound.pause();
+            clickSound.currentTime = 0;
+        }).catch(function(e) {});
+    }
+}
+
+document.addEventListener('click', function(event) {
+    enableAudio();
+    playClickSound();
+});
