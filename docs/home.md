@@ -1,93 +1,103 @@
 <style>
-/* ========== 苇下记社·报纸风格内嵌样式 ========== */
+/* ========== 苇下记社 · 雨夜旧报纸 ========== */
 
-/* 强制全局背景 */
+/* 全局：纯黑背景 */
 html, body {
-    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png') !important;
-    background-color: #f4f1ea !important;
-    color: #2c2c2c !important;
+    background-color: #0a0c0f !important;
+    background-image: none !important;
+    color: #d0cfc0 !important;
     font-family: 'Noto Serif SC', 'Georgia', 'Times New Roman', serif !important;
 }
 
-/* 顶部导航栏毛玻璃 */
+/* 顶部导航栏：半透明、毛玻璃 */
 .md-header {
-    background-color: rgba(244, 241, 234, 0.6) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+    background-color: rgba(10, 12, 15, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
     box-shadow: none !important;
 }
-
-/* 搜索框透明 */
+.md-header__topic,
+.md-header__title {
+    color: #d0cfc0 !important;
+}
 .md-search__input {
-    background-color: rgba(255,255,255,0.5) !important;
+    background-color: rgba(255,255,255,0.08) !important;
     border-radius: 20px !important;
-    color: #2c2c2c !important;
+    color: #d0cfc0 !important;
 }
 
-/* 核心内容区——报纸页面 */
-.md-content,
-.md-content__inner,
-.md-typeset {
+/* 报纸核心区域：深色、有褶皱纹理的旧纸 */
+.md-content {
     max-width: 900px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    background-color: rgba(255, 255, 255, 0.85) !important;
+    margin: 3rem auto !important;
+    /* 深褐色底 + 深色褶皱纹理 */
+    background-color: #3a3528 !important;
+    background-image: url('https://www.transparenttextures.com/patterns/crepe-paper.png') !important;
     padding: 2.5rem !important;
-    box-shadow: 0 0 30px rgba(0,0,0,0.2) !important;
-    border: 1px solid #c0b090 !important;
+    box-shadow: 0 0 40px rgba(0,0,0,0.9), 0 0 10px rgba(245, 245, 220, 0.2) !important;
+    border: 1px solid #8b7a5e !important;
     border-radius: 4px !important;
+    color: #e8e2d2 !important; /* 浅色文字，在深色纸张上易读 */
 }
+
+/* 内层不要重复背景 */
 .md-content__inner,
 .md-typeset {
-    background-color: transparent !important;
+    background: transparent !important;
     box-shadow: none !important;
     border: none !important;
     padding: 0 !important;
+    max-width: 100% !important;
 }
 
-/* 手机适配 */
+/* 手机端 */
 @media (max-width: 768px) {
-    .md-content,
-    .md-content__inner,
-    .md-typeset {
-        max-width: 100% !important;
+    .md-content {
         margin: 1rem !important;
         padding: 1.5rem !important;
     }
 }
 
-/* 表格彻底融入 */
+/* 表格融入深色报纸 */
 .md-typeset__table table,
 .md-typeset table {
     background-color: transparent !important;
     box-shadow: none !important;
 }
 .md-typeset table th {
-    background-color: rgba(0,0,0,0.06) !important;
-    border-bottom: 2px solid #8b6b4d !important;
+    background-color: rgba(255,255,255,0.08) !important;
+    border-bottom: 2px solid #8b7a5e !important;
+    color: #e8e2d2 !important;
 }
 .md-typeset table td {
     background-color: transparent !important;
-    border-bottom: 1px solid #d0c8b0 !important;
+    border-bottom: 1px solid #5a5243 !important;
+    color: #e8e2d2 !important;
 }
 
-/* 毛玻璃卡片 */
+/* 拼贴卡片毛玻璃效果 */
 .collage-card {
-    background: rgba(255,255,255,0.3) !important;
+    background: rgba(255,255,255,0.1) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255,255,255,0.4) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
     border-radius: 8px !important;
     padding: 1.5rem !important;
     margin: 1.5rem 0 !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
+    color: #e8e2d2 !important;
     transition: all 0.3s ease !important;
 }
 .collage-card:hover {
-    background: rgba(255,255,255,0.4) !important;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
+    background: rgba(255,255,255,0.15) !important;
     transform: translateY(-2px) !important;
+}
+
+/* 页脚透明 */
+.md-footer {
+    background: transparent !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
 }
 </style>
 
@@ -100,7 +110,7 @@ html, body {
 
 <div class="collage-card rotate-2">
   <ul>
-    <li><strong>奥蒂莉亚</strong>：苇下记社现任“不可见的主笔”</li>
+    <li><strong>奥维莉雅</strong>：苇下记社现任“不可见的主笔”</li>
   </ul>
 </div>
 
