@@ -153,68 +153,71 @@ html, body {
 </style>
 
 <!-- ==================== 自定义布局开始 ==================== -->
-<div class="archives-layout">
+<div class="newspaper">
 
-    <!-- 左侧面板：导航 + 目录 -->
-    <div class="side-panel">
-        <!-- 导航块（由浅） -->
-        <div class="panel-block" style="background: rgba(255,255,255,0.08);">
-            <strong> 档案分类</strong>
-            <ul>
-                <li><a href="/my-coc-wiki/"> 卷封</a></li>
-                <li><a href="/my-coc-wiki/home/"> 档案室</a></li>
-                <li><a href="/my-coc-wiki/roster/"> 驻社名录</a></li>
-            </ul>
-        </div>
+    <h1>苇下</h1>
 
-        <!-- 目录块（由浅到深过渡，此处稍浅） -->
-        <div class="panel-block" style="background: rgba(255,255,255,0.12);">
-            <strong> 本文目录</strong>
-            <!-- 手动维护目录，与你的文章标题同步 -->
-            <ul>
-                <li><a href="#苇下">苇下</a></li>
-                <li><a href="#主笔">主笔</a></li>
-                <li><a href="#事件记录进行中">事件记录·进行中</a></li>
-                <li><a href="#驻社名录">驻社名录</a></li>
-            </ul>
-        </div>
-    </div>
+<blockquote>
+    <p>探微索隐，归寂于无；以记其源，以苇为名</p>
+    <p>「魑魅魍魎を原初の闇に還し、森羅万象の彼方を葦の根元に記す」</p>
+</blockquote>
 
-    <!-- 中间报纸区域（最深色块） -->
-    <div class="newspaper" markdown="1">
+    <h2>主笔</h2>
 
-        <!-- 以下是你原来的 Markdown 内容，包裹在 newspaper 容器内 -->
-        # 苇下
-
-        > 探微索隐，归寂于无；以记其源，以苇为名
-        > 「魑魅魍魎を原初の闇に還し、森羅万象の彼方を葦の根元に記す」
-
-        ## Ξ 主笔 Ξ
-
-        <div class="collage-card">
-          <ul style="margin:0; padding-left:1.5em;">
+    <div class="collage-card">
+        <ul style="margin:0; padding-left:1.5em;">
             <li><strong>奥丽维娅</strong>：苇下记社现任“不可见的主笔”</li>
-          </ul>
-        </div>
-
-        ## ﹡ 事件记录·进行中
-
-        | 状态 | 事件代号 | 时间/地点 |
-        | :---: | :--- | :--- |
-        | **（封存文档）** | 《大幕山》 | 现代·中国 |
-        | **（封存文档）** | 《心湖传说》 | 现代·中国 |
-        | **（资料归集）** | 《谢娘娘点化》 | 现代·中国 |
-        | **（特急编集）** | 《圣维塔利斯疗养院》 | 近现代·瑞士 |
-        | **（特急编集）** | 《虚境梦潮》 | 近现代·美国 |
-
-        [→ 翻阅更多往期刊载](./)
-
-        ## 驻社名录
-
-        - **被卷入者**：请稍后，名录建设中…
-        - [查看完整名录 →](/my-coc-wiki/roster/)
-
-        *档案持续更新中。最后更新：2025-05-09*
+        </ul>
     </div>
+
+    <h2>﹡ 事件记录·进行中</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">状态</th>
+                <th style="text-align: center;">事件代号</th>
+                <th style="text-align: center;">时间/地点</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>（封存文档）</strong></td>
+                <td>《大幕山》</td>
+                <td>现代·中国</td>
+            </tr>
+            <tr>
+                <td><strong>（封存文档）</strong></td>
+                <td>《心湖传说》</td>
+                <td>现代·中国</td>
+            </tr>
+            <tr>
+                <td><strong>（资料归集）</strong></td>
+                <td>《谢娘娘点化》</td>
+                <td>现代·中国</td>
+            </tr>
+            <tr>
+                <td><strong>（特急编集）</strong></td>
+                <td>《圣维塔利斯疗养院》</td>
+                <td>近现代·瑞士</td>
+            </tr>
+            <tr>
+                <td><strong>（特急编集）</strong></td>
+                <td>《虚境梦潮》</td>
+                <td>近代·美国</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><a href="./">→ 翻阅更多往期刊载</a></p>
+
+    <h2>驻社名录</h2>
+
+    <ul>
+        <li><strong>被卷入者</strong>：请稍后，名录建设中…</li>
+        <li><a href="/my-coc-wiki/roster/">查看完整名录 →</a></li>
+    </ul>
+
+    <p><em>档案持续更新中。最后更新：2025-05-09</em></p>
 
 </div>
