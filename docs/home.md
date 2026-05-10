@@ -234,6 +234,50 @@ blockquote p + p {
 }
 </style>
 
+<script>
+(function() {
+    // 暴力去除白色/浅色背景
+    const all = document.querySelectorAll('*');
+    all.forEach(el => {
+        const bg = getComputedStyle(el).backgroundColor;
+        // 如果背景接近白色 (亮度 > 240)，强制透明或深色
+        if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
+            // 简单判断：rgb三个值总和 > 720 大概是白色
+            const nums = bg.match(/\d+/g);
+            if (nums && nums.length >= 3) {
+                const r = parseInt(nums[0]), g = parseInt(nums[1]), b = parseInt(nums[2]);
+                if ((r+g+b) > 720) {
+                    el.style.backgroundColor = 'transparent';
+                }
+            }
+        }
+        // 去除蓝色 outline（尤其是 details/summary）
+        el.style.outline = 'none';
+    });
+
+    // 针对侧边栏强制加回毛玻璃效果
+    const sidebar = document.querySelector('.md-sidebar--primary');
+    if (sidebar) {
+        sidebar.style.background = 'transparent';
+        const inner = sidebar.querySelector('.md-sidebar__inner');
+        if (inner) {
+            inner.style.background = 'rgba(74, 68, 58, 0.55)';
+            inner.style.backdropFilter = 'blur(8px)';
+            inner.style.WebkitBackdropFilter = 'blur(8px)';
+            inner.style.border = '1px solid rgba(255,255,255,0.1)';
+            inner.style.borderRadius = '12px';
+            inner.style.padding = '1rem';
+        }
+    }
+
+    // 强制折叠面板无蓝框
+    const details = document.querySelectorAll('.case-details, .case-details summary');
+    details.forEach(el => {
+        el.style.outline = 'none';
+        el.style.border = '1px solid rgba(255,255,255,0.15)';
+    });
+})();
+</script>
 
 # 苇下
 
