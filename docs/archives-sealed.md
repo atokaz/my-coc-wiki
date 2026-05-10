@@ -4,7 +4,6 @@ hide:
 ---
 
 <style>
-/* 与分类页相同的全局、导航、侧边栏样式（略，可复制同套） */
 html, body { background-color: #e8e4db !important; margin:0;padding:0; font-family: 'Noto Serif SC', serif; color: #3a3528; }
 .md-header { background: rgba(90,82,70,0.6) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.1); }
 .md-sidebar--primary { background: transparent !important; }
@@ -17,7 +16,7 @@ html, body { background-color: #e8e4db !important; margin:0;padding:0; font-fami
 .md-content__inner { background:transparent !important; box-shadow:none; border:none; padding:0; }
 h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:0.3em; }
 
-/* 卡片堆叠 */
+/* 卡片堆 */
 .archive-stack { position: relative; min-height: 280px; margin: 1.5rem 0; }
 .stack-card {
   position: absolute; width: 100%; background: #3a3528;
@@ -27,11 +26,13 @@ h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:
   z-index:1; cursor:pointer;
 }
 .stack-card:hover { transform: translateY(-12px) !important; z-index:20 !important; box-shadow:0 10px 25px rgba(0,0,0,0.6); }
-/* 上方卡片向下滑动但保持遮盖 */
+
+/* 被推开的卡片：向下滑动，仍部分遮盖 */
 .stack-card.shifted {
-  transform: translateY(60px) scale(0.98);
+  transform: translateY(45px) scale(0.98);
   z-index:0 !important;
 }
+
 .stack-card.active {
   transform: translateY(0) scale(1);
   z-index:10 !important;
@@ -44,10 +45,11 @@ h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:
 .btn-link:hover { transform:translateY(-2px); }
 </style>
 
-# 封存编集 · 已完结
+<h1>封存编集 · 已完结</h1>
 
 <div class="archive-stack">
-  <div class="stack-card" style="top: 0;" onclick="toggleCard(this)">
+  <!-- 第一张卡片堆在上面，top 负值让它覆盖第二张一点 -->
+  <div class="stack-card" style="top: -15px;" onclick="toggleCard(this)">
     <span class="tag">封存编集</span>
     <h3>《心湖传说》</h3>
     <p style="color:#b0a090;">现代·中国</p>
@@ -56,12 +58,14 @@ h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:
       <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
     </div>
   </div>
-  <div class="stack-card" style="top: 20px;" onclick="toggleCard(this)">
+
+  <!-- 第二张卡片正常位置 top:0 -->
+  <div class="stack-card" style="top: 0;" onclick="toggleCard(this)">
     <span class="tag">封存编集</span>
     <h3>《大幕山》</h3>
     <p style="color:#b0a090;">现代·中国</p>
     <div class="preview-content">
-      <p>毕设导师巧用连环计，大学生误入克苏鲁。</p>
+      <p>毕设导师巧设连环计，大学生误入克苏鲁。</p>
       <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
     </div>
   </div>
