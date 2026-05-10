@@ -234,6 +234,21 @@ blockquote p + p {
 .md-footer {
     display: none !important;
 }
+
+/* ========== 头像图片 ========== */
+.avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    background: transparent;
+    transition: transform 0.2s ease;
+}
+.avatar-img:hover {
+    transform: scale(1.05);
+}
 </style>
 
 
@@ -247,9 +262,12 @@ blockquote p + p {
 ## 主笔
 
 <div class="collage-card">
-    <ul style="margin:0; padding-left:1.5em;">
-        <li><strong>奥丽维娅</strong>：苇下记社现任“不可见的主笔”</li>
-    </ul>
+    <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+        <img src="images/奥丽维娅.png" alt="奥丽维娅" class="avatar-img">
+        <div>
+            <strong>奥丽维娅</strong>：苇下记社现任“不可见的主笔”
+        </div>
+    </div>
 </div>
 
 ## 事件记录·进行中
