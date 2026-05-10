@@ -13,7 +13,7 @@ html, body {
     color: #3a3528;
 }
 
-/* ========== 顶部导航栏：彻底透明化，去除白色残留 ========== */
+/* ========== 顶部导航栏：半透明深色毛玻璃 ========== */
 .md-header {
     background: rgba(90, 82, 70, 0.6) !important;
     backdrop-filter: blur(12px) !important;
@@ -21,7 +21,6 @@ html, body {
     border-bottom: 1px solid rgba(0,0,0,0.1) !important;
     box-shadow: none !important;
 }
-/* 强制移除顶部导航内所有可能出现的白色背景 */
 .md-header *,
 .md-header__inner,
 .md-header__topic,
@@ -29,27 +28,31 @@ html, body {
 .md-header__button,
 .md-tabs {
     background: transparent !important;
-    background-color: transparent !important;
 }
 .md-header__topic,
 .md-header__title {
     color: #f0e6d2 !important;
 }
 
-/* ========== 左侧边栏：浅色毛玻璃卡片（介于背景和报纸之间） ========== */
+/* ========== 左侧边栏：彻底消除泛白光 + 添加阴影 ========== */
 .md-sidebar--primary {
     background: transparent !important;
 }
 .md-sidebar--primary .md-sidebar__inner {
-    background: rgba(74, 68, 58, 0.55);      /* 中深暖灰褐，比背景深 */
+    background: rgba(74, 68, 58, 0.55);          /* 半透明深灰褐 */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
     padding: 1rem;
     margin: 1rem 0.5rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);     /* 与报纸卡片类似的阴影 */
 }
-/* 侧边栏内部导航链接 */
+/* 强制移除侧边栏内所有子元素的白色背景 */
+.md-sidebar--primary *,
+.md-sidebar__inner * {
+    background-color: transparent !important;
+}
 .md-nav__link {
     color: #d0c8b0 !important;
     background: transparent !important;
@@ -124,13 +127,13 @@ blockquote p + p {
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
-/* ========== 折叠面板：去除蓝边，圆角毛玻璃 ========== */
+/* ========== 折叠面板：无蓝边，圆角毛玻璃 ========== */
 .case-details {
     margin: 1.5em 0;
-    border: 1px solid rgba(255,255,255,0.15) !important;   /* 与卡片一致的淡色边框 */
+    border: 1px solid rgba(255,255,255,0.15) !important;
     border-radius: 8px !important;
     background: transparent !important;
-    outline: none !important;                /* 杀死默认蓝色轮廓 */
+    outline: none !important;
 }
 .case-details summary {
     list-style: none;
@@ -139,7 +142,7 @@ blockquote p + p {
     font-weight: bold;
     font-size: 1.1rem;
     padding: 0.8em 1rem;
-    background: rgba(255,255,255,0.06);      /* 半透明浅色玻璃 */
+    background: rgba(255,255,255,0.06);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 8px;
@@ -152,18 +155,12 @@ blockquote p + p {
 .case-details summary:hover {
     background: rgba(255,255,255,0.1);
 }
+/* 无箭头 */
 .case-details summary::before {
-    content: "▶";
-    display: inline-block;
-    transition: transform 0.2s ease;
-    font-size: 0.75rem;
-    color: #c0b090;
-}
-.case-details[open] summary::before {
-    transform: rotate(90deg);
+    content: none;
 }
 .case-details .case-content {
-    background: rgba(0,0,0,0.25);             /* 深色半透明，无白色 */
+    background: rgba(0,0,0,0.25);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 0 0 8px 8px;
@@ -195,14 +192,14 @@ blockquote p + p {
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
-/* ========== 移动端适配（含抽屉菜单强制深色） ========== */
+/* ========== 移动端适配 ========== */
 @media (max-width: 768px) {
     .md-content {
         max-width: 100% !important;
         margin: 1rem !important;
         padding: 1.5rem !important;
     }
-    /* 移动端菜单深色风格 */
+    /* 移动端抽屉深色 */
     .md-nav--primary {
         background: #1a1e26 !important;
     }
@@ -219,65 +216,14 @@ blockquote p + p {
         color: #c0b8a8 !important;
         background: transparent !important;
     }
-    .md-nav--primary .md-nav__link:hover {
-        background: rgba(255,255,255,0.05) !important;
-        color: #e8e2d2 !important;
-    }
-    .md-nav--primary .md-nav {
-        background: transparent !important;
-    }
 }
 
-/* 页面底部隐藏 */
+/* 页脚隐藏 */
 .md-footer {
     display: none !important;
 }
 </style>
 
-<script>
-(function() {
-    // 暴力去除白色/浅色背景
-    const all = document.querySelectorAll('*');
-    all.forEach(el => {
-        const bg = getComputedStyle(el).backgroundColor;
-        // 如果背景接近白色 (亮度 > 240)，强制透明或深色
-        if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-            // 简单判断：rgb三个值总和 > 720 大概是白色
-            const nums = bg.match(/\d+/g);
-            if (nums && nums.length >= 3) {
-                const r = parseInt(nums[0]), g = parseInt(nums[1]), b = parseInt(nums[2]);
-                if ((r+g+b) > 720) {
-                    el.style.backgroundColor = 'transparent';
-                }
-            }
-        }
-        // 去除蓝色 outline（尤其是 details/summary）
-        el.style.outline = 'none';
-    });
-
-    // 针对侧边栏强制加回毛玻璃效果
-    const sidebar = document.querySelector('.md-sidebar--primary');
-    if (sidebar) {
-        sidebar.style.background = 'transparent';
-        const inner = sidebar.querySelector('.md-sidebar__inner');
-        if (inner) {
-            inner.style.background = 'rgba(74, 68, 58, 0.55)';
-            inner.style.backdropFilter = 'blur(8px)';
-            inner.style.WebkitBackdropFilter = 'blur(8px)';
-            inner.style.border = '1px solid rgba(255,255,255,0.1)';
-            inner.style.borderRadius = '12px';
-            inner.style.padding = '1rem';
-        }
-    }
-
-    // 强制折叠面板无蓝框
-    const details = document.querySelectorAll('.case-details, .case-details summary');
-    details.forEach(el => {
-        el.style.outline = 'none';
-        el.style.border = '1px solid rgba(255,255,255,0.15)';
-    });
-})();
-</script>
 
 # 苇下
 
@@ -308,12 +254,12 @@ blockquote p + p {
 </details>
 
 <p style="margin-top: 1.8em;">
-    <a href="./" class="btn-link"> 翻阅更多往期刊载</a>
+    <a href="./" class="btn-link">翻阅更多往期刊载</a>
 </p>
 
 ## 驻社名录
 
 - **被卷入者**：请稍后，名录建设中…
-- <a href="/my-coc-wiki/roster/" class="btn-link" style="margin-top:0.8em;"> 查看完整名录</a>
+- <a href="/my-coc-wiki/roster/" class="btn-link" style="margin-top:0.8em;">查看完整名录</a>
 
 *档案持续更新中。最后更新：2025-05-09*
