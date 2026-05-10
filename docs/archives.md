@@ -178,7 +178,7 @@ h1 {
         <span class="tag tag-log2">封存文档</span>
         <h3>《心湖传说》</h3>
         <p class="meta">现代·中国</p>
-        <p class="preview">我有一个小秘密，小秘密，就不告诉你</p>
+        <p class="preview">我有一个小秘密，小秘密，就不告诉你，就不告诉你</p>
     </a>
 
     <a href="/my-coc-wiki/home/" class="archive-card">
