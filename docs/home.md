@@ -13,7 +13,7 @@ html, body {
     color: #3a3528;
 }
 
-/* ========== 顶部导航栏：半透明深色毛玻璃 ========== */
+/* ========== 顶部导航栏：彻底无白色残留 ========== */
 .md-header {
     background: rgba(90, 82, 70, 0.6) !important;
     backdrop-filter: blur(12px) !important;
@@ -21,12 +21,16 @@ html, body {
     border-bottom: 1px solid rgba(0,0,0,0.1) !important;
     box-shadow: none !important;
 }
+/* 强制所有子元素背景透明 */
 .md-header *,
 .md-header__inner,
 .md-header__topic,
 .md-header__title,
 .md-header__button,
-.md-tabs {
+.md-tabs,
+.md-header .md-header__topic,
+.md-header .md-header__title {
+    background-color: transparent !important;
     background: transparent !important;
 }
 .md-header__topic,
@@ -34,24 +38,27 @@ html, body {
     color: #f0e6d2 !important;
 }
 
-/* ========== 左侧边栏：彻底消除泛白光 + 添加阴影 ========== */
+/* ========== 左侧边栏：无泛白光，带阴影的毛玻璃卡片 ========== */
 .md-sidebar--primary {
     background: transparent !important;
 }
 .md-sidebar--primary .md-sidebar__inner {
-    background: rgba(74, 68, 58, 0.55);          /* 半透明深灰褐 */
+    background: rgba(74, 68, 58, 0.55);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
     padding: 1rem;
     margin: 1rem 0.5rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35);     /* 与报纸卡片类似的阴影 */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
 }
-/* 强制移除侧边栏内所有子元素的白色背景 */
+/* 侧边栏内所有元素背景透明，并特别锁定标题 */
 .md-sidebar--primary *,
-.md-sidebar__inner * {
+.md-sidebar__inner *,
+.md-nav__title,
+.md-nav__title * {
     background-color: transparent !important;
+    background: transparent !important;
 }
 .md-nav__link {
     color: #d0c8b0 !important;
@@ -63,7 +70,7 @@ html, body {
     border-radius: 4px;
 }
 
-/* ========== 报纸核心内容区（最深色块） ========== */
+/* ========== 报纸核心内容区 ========== */
 .md-content {
     max-width: 900px !important;
     margin: 2rem auto !important;
@@ -127,7 +134,7 @@ blockquote p + p {
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
-/* ========== 折叠面板：无蓝边，圆角毛玻璃 ========== */
+/* ========== 折叠面板：圆角毛玻璃 ========== */
 .case-details {
     margin: 1.5em 0;
     border: 1px solid rgba(255,255,255,0.15) !important;
@@ -170,7 +177,7 @@ blockquote p + p {
     line-height: 1.6;
 }
 
-/* ========== 按钮链接（毛玻璃） ========== */
+/* ========== 按钮链接 ========== */
 .btn-link {
     display: inline-block;
     background: rgba(255,255,255,0.1);
@@ -199,7 +206,6 @@ blockquote p + p {
         margin: 1rem !important;
         padding: 1.5rem !important;
     }
-    /* 移动端抽屉深色 */
     .md-nav--primary {
         background: #1a1e26 !important;
     }
@@ -232,7 +238,7 @@ blockquote p + p {
     <p>「魑魅魍魎を原初の闇に還し、森羅万象の彼方を葦の根元に記す」</p>
 </blockquote>
 
-## 主笔
+## Ξ 主笔 Ξ
 
 <div class="collage-card">
     <ul style="margin:0; padding-left:1.5em;">
@@ -240,7 +246,7 @@ blockquote p + p {
     </ul>
 </div>
 
-## ﹡ 事件记录·进行中
+## 事件记录·进行中
 
 <details class="case-details">
     <summary><span>特急编集 · 当前追踪</span></summary>
@@ -262,4 +268,4 @@ blockquote p + p {
 - **被卷入者**：请稍后，名录建设中…
 - <a href="/my-coc-wiki/roster/" class="btn-link" style="margin-top:0.8em;">查看完整名录</a>
 
-*档案持续更新中。最后更新：2025-05-09*
+*档案持续更新中。最后更新：2025-05-10*
