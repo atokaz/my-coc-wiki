@@ -73,12 +73,18 @@ hide:
         border-bottom: 1px solid #5a5243;
         padding-bottom: 0.3em;
     }
+    h2 {
+        color: #f0e6d2 !important;
+        border-bottom: 1px solid #5a5243;
+        padding-bottom: 0.3em;
+        margin-top: 2em;
+    }
 
-    /* ========== 卡片堆叠容器 ========== */
+    /* ========== 卡片堆容器 ========== */
     .archive-stack {
         position: relative;
-        min-height: 650px;
-        margin: 2rem 0;
+        min-height: 200px;
+        margin: 1rem 0 2rem 0;
     }
 
     /* ========== 叠层卡片 ========== */
@@ -92,33 +98,28 @@ hide:
         color: #e8e2d2;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), 
-                    box-shadow 0.3s ease,
-                    z-index 0s step-end;  /* z-index 变化无动画 */
+                    box-shadow 0.3s ease;
         z-index: 1;
         cursor: pointer;
     }
 
-    /* 悬停效果：自动上浮、置顶、露出标题 */
     .stack-card:hover {
         transform: translateY(-12px) !important;
         z-index: 20 !important;
         box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     }
 
-    /* 被推开的卡片（点击展开某张后，它上面的卡片向下滑） */
     .stack-card.shifted {
         transform: translateY(80px) scale(0.98);
         z-index: 0 !important;
     }
 
-    /* 当前展开的卡片（点击后固定展开） */
     .stack-card.active {
         transform: translateY(0) scale(1);
         z-index: 10 !important;
         border-color: rgba(255,255,255,0.35);
     }
 
-    /* 标签 */
     .tag {
         font-size: 0.75rem;
         padding: 0.2em 0.6em;
@@ -127,7 +128,6 @@ hide:
         color: #c0b8a8;
     }
 
-    /* 预览内容默认隐藏，active 时显示 */
     .preview-content {
         display: none;
         margin-top: 0.8em;
@@ -136,7 +136,6 @@ hide:
         display: block;
     }
 
-    /* 按钮链接 */
     .btn-link {
         display: inline-block;
         background: rgba(255,255,255,0.1);
@@ -159,9 +158,32 @@ hide:
 
 <p style="color:#c0b8a8;">悬停卡片可预览标题，点击可查看详情；再次点击或点击其他卡片收起。</p>
 
-<div class="archive-stack" id="cardStack">
+<!-- 特急编集 -->
+<h2>▸ 特急编集</h2>
+<div class="archive-stack">
+    <div class="stack-card" style="top: 0px;" onclick="toggleCard(this)">
+        <span class="tag">特急编集</span>
+        <h3 style="margin:0.3em 0;">《虚境梦潮》</h3>
+        <p style="color:#b0a090; font-size:0.85rem;">近代·美国</p>
+        <div class="preview-content">
+            <p>梦境与现实在潮水中模糊了边界。</p>
+            <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+        </div>
+    </div>
+    <div class="stack-card" style="top: 15px;" onclick="toggleCard(this)">
+        <span class="tag">特急编集</span>
+        <h3 style="margin:0.3em 0;">《圣维塔利斯疗养院》</h3>
+        <p style="color:#b0a090; font-size:0.85rem;">近现代·瑞士</p>
+        <div class="preview-content">
+            <p>三个外国人相遇的起始。</p>
+            <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+        </div>
+    </div>
+</div>
 
-    <!-- 排序1：心湖传说 -->
+<!-- 封存编集 -->
+<h2>▸ 封存编集</h2>
+<div class="archive-stack">
     <div class="stack-card" style="top: 0px;" onclick="toggleCard(this)">
         <span class="tag">封存编集</span>
         <h3 style="margin:0.3em 0;">《心湖传说》</h3>
@@ -171,8 +193,6 @@ hide:
             <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
         </div>
     </div>
-
-    <!-- 排序2：大幕山 -->
     <div class="stack-card" style="top: 15px;" onclick="toggleCard(this)">
         <span class="tag">封存编集</span>
         <h3 style="margin:0.3em 0;">《大幕山》</h3>
@@ -182,31 +202,12 @@ hide:
             <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
         </div>
     </div>
+</div>
 
-    <!-- 排序3：虚境梦潮 -->
-    <div class="stack-card" style="top: 30px;" onclick="toggleCard(this)">
-        <span class="tag">特急编集</span>
-        <h3 style="margin:0.3em 0;">《虚境梦潮》</h3>
-        <p style="color:#b0a090; font-size:0.85rem;">近代·美国</p>
-        <div class="preview-content">
-            <p>梦境与现实在潮水中模糊了边界。</p>
-            <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
-        </div>
-    </div>
-
-    <!-- 排序4：圣维塔利斯疗养院 -->
-    <div class="stack-card" style="top: 45px;" onclick="toggleCard(this)">
-        <span class="tag">特急编集</span>
-        <h3 style="margin:0.3em 0;">《圣维塔利斯疗养院》</h3>
-        <p style="color:#b0a090; font-size:0.85rem;">近现代·瑞士</p>
-        <div class="preview-content">
-            <p>三个外国人相遇的起始。</p>
-            <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
-        </div>
-    </div>
-
-    <!-- 排序5：谢娘娘点化 -->
-    <div class="stack-card" style="top: 60px;" onclick="toggleCard(this)">
+<!-- 资料归集 -->
+<h2>▸ 资料归集</h2>
+<div class="archive-stack">
+    <div class="stack-card" style="top: 0px;" onclick="toggleCard(this)">
         <span class="tag">资料归集</span>
         <h3 style="margin:0.3em 0;">《谢娘娘点化》</h3>
         <p style="color:#b0a090; font-size:0.85rem;">现代·中国</p>
@@ -215,7 +216,6 @@ hide:
             <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
         </div>
     </div>
-
 </div>
 
 <p style="margin-top: 2em;">
@@ -225,47 +225,46 @@ hide:
 
 <script>
     let currentActive = null;
+    let currentStack = null;
 
     function toggleCard(card) {
+        const stack = card.closest('.archive-stack');
+        if (!stack) return;
+
         if (card === currentActive) {
-            // 收起当前展开的卡片
             card.classList.remove('active');
             currentActive = null;
-            resetAllShifts();
+            currentStack = null;
+            resetStack(stack);
             return;
         }
 
-        // 收起之前的卡片
-        if (currentActive) {
+        if (currentActive && currentStack) {
             currentActive.classList.remove('active');
+            resetStack(currentStack);
         }
 
-        // 展开新卡片
         card.classList.add('active');
         currentActive = card;
-        applyShifts(card);
+        currentStack = stack;
+        applyShifts(stack, card);
     }
 
-    function applyShifts(activeCard) {
-        const cards = document.querySelectorAll('.stack-card');
-        let foundActive = false;
+    function applyShifts(stack, activeCard) {
+        const cards = Array.from(stack.querySelectorAll('.stack-card'));
+        const activeIndex = cards.indexOf(activeCard);
 
-        cards.forEach(c => {
-            if (c === activeCard) {
-                foundActive = true;
-                c.classList.remove('shifted');
-            } else if (foundActive) {
-                // 在 activeCard 之后的卡片（HTML 顺序在上面）向下推开
-                c.classList.add('shifted');
-            } else {
-                c.classList.remove('shifted');
+        cards.forEach((card, index) => {
+            card.classList.remove('shifted');
+            if (index < activeIndex) {
+                card.classList.add('shifted');
             }
         });
     }
 
-    function resetAllShifts() {
-        document.querySelectorAll('.stack-card').forEach(c => {
-            c.classList.remove('shifted');
+    function resetStack(stack) {
+        stack.querySelectorAll('.stack-card').forEach(card => {
+            card.classList.remove('shifted');
         });
     }
 </script>
