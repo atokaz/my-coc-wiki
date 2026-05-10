@@ -38,27 +38,33 @@ html, body {
     color: #f0e6d2 !important;
 }
 
-/* ========== 左侧边栏：无泛白光，带阴影的毛玻璃卡片 ========== */
+/* ========== 左侧边栏：加深底色，消除标题泛白 ========== */
 .md-sidebar--primary {
     background: transparent !important;
 }
 .md-sidebar--primary .md-sidebar__inner {
-    background: rgba(74, 68, 58, 0.55);
+    background: rgba(60, 52, 44, 0.65);   /* 比之前深，降低透明度，更深邃 */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     padding: 1rem;
     margin: 1rem 0.5rem;
     box-shadow: 0 6px 20px rgba(0,0,0,0.35);
 }
-/* 侧边栏内所有元素背景透明，并特别锁定标题 */
+/* 侧边栏内所有子元素背景强制透明，特别固定标题 */
 .md-sidebar--primary *,
 .md-sidebar__inner *,
 .md-nav__title,
-.md-nav__title * {
+.md-nav__title *,
+.md-nav__container {
     background-color: transparent !important;
     background: transparent !important;
+}
+/* 标题文字颜色，避免因透明而模糊 */
+.md-nav__title {
+    color: #f0e6d2 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .md-nav__link {
     color: #d0c8b0 !important;
