@@ -284,7 +284,7 @@ blockquote p + p {
 </details>
 
 <p style="margin-top: 1.8em;">
-    <a href="./" class="btn-link">翻阅更多往期刊载</a>
+    <a href="/my-coc-wiki/archives/" class="btn-link">翻阅更多往期刊载</a>
 </p>
 
 ## 驻社名录
