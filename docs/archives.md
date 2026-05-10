@@ -4,7 +4,7 @@ hide:
 ---
 
 <style>
-    /* ========== 全局：浅色档案盒背景 ========== */
+    /* ========== 全局 ========== */
     html, body {
         background-color: #e8e4db !important;
         margin: 0; padding: 0;
@@ -12,7 +12,7 @@ hide:
         color: #3a3528;
     }
     
-    /* ========== 顶部导航栏：毛玻璃 ========== */
+    /* ========== 顶部导航栏 ========== */
     .md-header {
         background: rgba(90, 82, 70, 0.6) !important;
         backdrop-filter: blur(12px) !important;
@@ -20,7 +20,7 @@ hide:
         border-bottom: 1px solid rgba(0,0,0,0.1) !important;
     }
 
-    /* ========== 侧边栏修复 ========== */
+    /* ========== 左侧边栏修复 ========== */
     .md-sidebar--primary {
         background: transparent !important;
     }
@@ -32,8 +32,28 @@ hide:
         border-radius: 12px;
         padding: 1.2rem;
         margin: 1rem 0.5rem;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
-    
+    .md-sidebar__inner * {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+    .md-nav__title {
+        color: #f5eed9 !important;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .md-nav__link {
+        color: #d0c8b0 !important;
+        background: transparent !important;
+    }
+    .md-nav__link:hover {
+        color: #f5eed9 !important;
+        background: rgba(255,255,255,0.06);
+        border-radius: 4px;
+    }
+
     /* ========== 报纸内容区 ========== */
     .md-content {
         max-width: 700px !important;
@@ -44,8 +64,9 @@ hide:
         box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
         border: 1px solid #5a5243 !important;
         border-radius: 8px !important;
+        color: #e8e2d2 !important;
     }
-    
+
     /* ========== 标题 ========== */
     h1 {
         color: #f5eed9 !important;
@@ -53,13 +74,13 @@ hide:
         padding-bottom: 0.3em;
     }
 
-    /* ========== 卡片堆容器 ========== */
+    /* ========== 卡片堆叠容器 ========== */
     .archive-stack {
         position: relative;
         min-height: 650px;
         margin: 2rem 0;
     }
-    
+
     /* ========== 叠层卡片 ========== */
     .stack-card {
         position: absolute;
@@ -69,29 +90,34 @@ hide:
         border-radius: 6px;
         padding: 1.5rem;
         color: #e8e2d2;
-        cursor: pointer;
-        transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1), 
-                    box-shadow 0.3s ease;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), 
+                    box-shadow 0.3s ease,
+                    z-index 0s step-end;  /* z-index 变化无动画 */
         z-index: 1;
+        cursor: pointer;
     }
+
+    /* 悬停效果：自动上浮、置顶、露出标题 */
     .stack-card:hover {
-        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        transform: translateY(-12px) !important;
+        z-index: 20 !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     }
-    
-    /* 被推开的卡片 */
+
+    /* 被推开的卡片（点击展开某张后，它上面的卡片向下滑） */
     .stack-card.shifted {
         transform: translateY(80px) scale(0.98);
         z-index: 0 !important;
     }
-    
-    /* 当前展开的卡片 */
+
+    /* 当前展开的卡片（点击后固定展开） */
     .stack-card.active {
         transform: translateY(0) scale(1);
         z-index: 10 !important;
-        border-color: rgba(255,255,255,0.3);
+        border-color: rgba(255,255,255,0.35);
     }
-    
+
     /* 标签 */
     .tag {
         font-size: 0.75rem;
@@ -100,8 +126,8 @@ hide:
         background: rgba(255,255,255,0.1);
         color: #c0b8a8;
     }
-    
-    /* 预览内容默认隐藏 */
+
+    /* 预览内容默认隐藏，active 时显示 */
     .preview-content {
         display: none;
         margin-top: 0.8em;
@@ -126,17 +152,16 @@ hide:
     .btn-link:hover {
         transform: translateY(-2px);
     }
-
 </style>
 
 
 # 往期刊载
 
-<p style="color:#c0b8a8;">点击卡片预览详情，再次点击或点击其他卡片收起。</p>
+<p style="color:#c0b8a8;">悬停卡片可预览标题，点击可查看详情；再次点击或点击其他卡片收起。</p>
 
 <div class="archive-stack" id="cardStack">
 
-    <!-- 排序1：心湖传说（封存编集） -->
+    <!-- 排序1：心湖传说 -->
     <div class="stack-card" style="top: 0px;" onclick="toggleCard(this)">
         <span class="tag">封存编集</span>
         <h3 style="margin:0.3em 0;">《心湖传说》</h3>
@@ -147,7 +172,7 @@ hide:
         </div>
     </div>
 
-    <!-- 排序2：大幕山（封存编集） -->
+    <!-- 排序2：大幕山 -->
     <div class="stack-card" style="top: 15px;" onclick="toggleCard(this)">
         <span class="tag">封存编集</span>
         <h3 style="margin:0.3em 0;">《大幕山》</h3>
@@ -158,7 +183,7 @@ hide:
         </div>
     </div>
 
-    <!-- 排序3：虚境梦潮（特急编集） -->
+    <!-- 排序3：虚境梦潮 -->
     <div class="stack-card" style="top: 30px;" onclick="toggleCard(this)">
         <span class="tag">特急编集</span>
         <h3 style="margin:0.3em 0;">《虚境梦潮》</h3>
@@ -169,7 +194,7 @@ hide:
         </div>
     </div>
 
-    <!-- 排序4：圣维塔利斯疗养院（特急编集） -->
+    <!-- 排序4：圣维塔利斯疗养院 -->
     <div class="stack-card" style="top: 45px;" onclick="toggleCard(this)">
         <span class="tag">特急编集</span>
         <h3 style="margin:0.3em 0;">《圣维塔利斯疗养院》</h3>
@@ -180,7 +205,7 @@ hide:
         </div>
     </div>
 
-    <!-- 排序5：谢娘娘点化（资料归集） -->
+    <!-- 排序5：谢娘娘点化 -->
     <div class="stack-card" style="top: 60px;" onclick="toggleCard(this)">
         <span class="tag">资料归集</span>
         <h3 style="margin:0.3em 0;">《谢娘娘点化》</h3>
@@ -202,11 +227,11 @@ hide:
     let currentActive = null;
 
     function toggleCard(card) {
-        // 如果点击的是已经展开的卡片，收起它
         if (card === currentActive) {
+            // 收起当前展开的卡片
             card.classList.remove('active');
-            shiftOthers(null);
             currentActive = null;
+            resetAllShifts();
             return;
         }
 
@@ -215,30 +240,32 @@ hide:
             currentActive.classList.remove('active');
         }
 
-        // 展开当前卡片
+        // 展开新卡片
         card.classList.add('active');
-        shiftOthers(card);
         currentActive = card;
+        applyShifts(card);
     }
 
-    function shiftOthers(activeCard) {
-        const allCards = document.querySelectorAll('.stack-card');
-        let pushed = false;  // 是否已经开始推送
+    function applyShifts(activeCard) {
+        const cards = document.querySelectorAll('.stack-card');
+        let foundActive = false;
 
-        allCards.forEach(c => {
+        cards.forEach(c => {
             if (c === activeCard) {
+                foundActive = true;
                 c.classList.remove('shifted');
-                pushed = true;  // 遇到活跃卡片，后面的都要推开
-            } else if (!activeCard) {
-                // 没有活跃卡片，全部归位
-                c.classList.remove('shifted');
-            } else if (pushed) {
-                // 活跃卡片上方的卡片向下推开
+            } else if (foundActive) {
+                // 在 activeCard 之后的卡片（HTML 顺序在上面）向下推开
                 c.classList.add('shifted');
             } else {
-                // 活跃卡片下方的卡片保持不动
                 c.classList.remove('shifted');
             }
+        });
+    }
+
+    function resetAllShifts() {
+        document.querySelectorAll('.stack-card').forEach(c => {
+            c.classList.remove('shifted');
         });
     }
 </script>
