@@ -24,8 +24,8 @@ nav:
   - 档案室: home.md
   - 驻社名录: roster.md
 
-extra_css:
-  - stylesheets/extra.css   # 保留，以后用来放公共样式
-
 extra_javascript:
   - javascripts/glass-sound.js
+
+extra_css:
+  - stylesheets/extra.css   # 保留，以后用来放公共样式
