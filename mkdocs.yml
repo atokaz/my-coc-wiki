@@ -26,3 +26,6 @@ nav:
 
 extra_css:
   - stylesheets/extra.css   # 保留，以后用来放公共样式
+
+extra_javascript:
+  - javascripts/glass-sound.js
