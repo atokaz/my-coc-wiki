@@ -13,7 +13,7 @@ html, body {
     color: #3a3528;
 }
 
-/* ========== 顶部导航栏：彻底无白色残留 ========== */
+/* ========== 顶部导航栏：半透明深色毛玻璃 ========== */
 .md-header {
     background: rgba(90, 82, 70, 0.6) !important;
     backdrop-filter: blur(12px) !important;
@@ -21,16 +21,12 @@ html, body {
     border-bottom: 1px solid rgba(0,0,0,0.1) !important;
     box-shadow: none !important;
 }
-/* 强制所有子元素背景透明 */
 .md-header *,
 .md-header__inner,
 .md-header__topic,
 .md-header__title,
 .md-header__button,
-.md-tabs,
-.md-header .md-header__topic,
-.md-header .md-header__title {
-    background-color: transparent !important;
+.md-tabs {
     background: transparent !important;
 }
 .md-header__topic,
@@ -38,34 +34,39 @@ html, body {
     color: #f0e6d2 !important;
 }
 
-/* ========== 左侧边栏：加深底色，消除标题泛白 ========== */
+/* ========== 左侧边栏：加深，标题清晰，无泛白 ========== */
 .md-sidebar--primary {
     background: transparent !important;
 }
 .md-sidebar--primary .md-sidebar__inner {
-    background: rgba(60, 52, 44, 0.65);   /* 比之前深，降低透明度，更深邃 */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(55, 48, 40, 0.7) !important;   /* 比之前深 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-    padding: 1rem;
+    padding: 1.2rem;
     margin: 1rem 0.5rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
-/* 侧边栏内所有子元素背景强制透明，特别固定标题 */
-.md-sidebar--primary *,
+/* 强制所有子元素背景透明，包括标题区域 */
 .md-sidebar__inner *,
 .md-nav__title,
 .md-nav__title *,
 .md-nav__container {
     background-color: transparent !important;
     background: transparent !important;
+    box-shadow: none !important;
 }
-/* 标题文字颜色，避免因透明而模糊 */
+/* 确保侧边栏标题文字可见、颜色适当 */
 .md-nav__title {
-    color: #f0e6d2 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #f5eed9 !important;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.3em 0;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
 }
+/* 导航链接 */
 .md-nav__link {
     color: #d0c8b0 !important;
     background: transparent !important;
@@ -140,7 +141,7 @@ blockquote p + p {
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
-/* ========== 折叠面板：圆角毛玻璃 ========== */
+/* ========== 折叠面板：圆角毛玻璃，无蓝边 ========== */
 .case-details {
     margin: 1.5em 0;
     border: 1px solid rgba(255,255,255,0.15) !important;
@@ -168,9 +169,8 @@ blockquote p + p {
 .case-details summary:hover {
     background: rgba(255,255,255,0.1);
 }
-/* 无箭头 */
 .case-details summary::before {
-    content: none;
+    content: none;  /* 无箭头 */
 }
 .case-details .case-content {
     background: rgba(0,0,0,0.25);
@@ -244,7 +244,7 @@ blockquote p + p {
     <p>「魑魅魍魎を原初の闇に還し、森羅万象の彼方を葦の根元に記す」</p>
 </blockquote>
 
-## Ξ 主笔 Ξ
+## 主笔
 
 <div class="collage-card">
     <ul style="margin:0; padding-left:1.5em;">
@@ -274,4 +274,4 @@ blockquote p + p {
 - **被卷入者**：请稍后，名录建设中…
 - <a href="/my-coc-wiki/roster/" class="btn-link" style="margin-top:0.8em;">查看完整名录</a>
 
-*档案持续更新中。最后更新：2025-05-10*
+*档案持续更新中。最后更新：2025-05-09*
