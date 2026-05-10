@@ -24,15 +24,19 @@
     }
 }
 
+/* 顶部导航栏：全站统一的毛玻璃效果 */
 .md-header, .md-tabs {
-    background: #1a2c1e !important;
-    border-bottom: none;
+    background: rgba(90, 82, 70, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
 .md-header-nav__button, .md-tabs__link {
-    color: #e8e6df;
+    color: #f0e6d2;
 }
 
 .md-search__form {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.1);
 }
