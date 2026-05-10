@@ -1,76 +1,88 @@
 (function() {
-    // 共享AudioContext实例
+    'use strict';
+
     let audioCtx = null;
 
-    // 安全的初始化
-    function ensureAudioCtx() {
+    // 安全获取或恢复 AudioContext
+    function getCtx() {
         if (audioCtx) {
             if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
+                audioCtx.resume().catch(console.warn);
             }
             return audioCtx;
         }
         try {
             const AC = window.AudioContext || window.webkitAudioContext;
             audioCtx = new AC();
-            // 某些移动端需要手动resume
             if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
+                audioCtx.resume().catch(console.warn);
             }
             return audioCtx;
         } catch (e) {
-            console.warn('Web Audio API not supported');
+            console.warn('Web Audio API not available');
             return null;
         }
     }
 
-    // 播放晶莹玻璃音效
-    function playCrispClick() {
-        const ctx = ensureAudioCtx();
+    // 播放轻叩玻璃音效
+    function playGlassTap() {
+        const ctx = getCtx();
         if (!ctx) return;
 
         const now = ctx.currentTime;
-        const duration = 0.08; // 极短，清脆
+        const dur = 0.06; // 极短促
 
-        // 第一个振荡器：高频正弦，模拟玻璃本体
+        // 基音：3000Hz 正弦，模拟清脆的叩击
         const osc1 = ctx.createOscillator();
         const gain1 = ctx.createGain();
         osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(2400, now);          // 高频
-        osc1.frequency.exponentialRampToValueAtTime(1600, now + duration);
-        gain1.gain.setValueAtTime(0.3, now);
-        gain1.gain.exponentialRampToValueAtTime(0.001, now + duration);
+        osc1.frequency.setValueAtTime(3000, now);
+        osc1.frequency.exponentialRampToValueAtTime(2200, now + dur);
+        gain1.gain.setValueAtTime(0.35, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + dur);
 
-        // 第二个振荡器：更高频，少量，增加空气感
+        // 第一泛音：6000Hz，增加晶莹感
         const osc2 = ctx.createOscillator();
         const gain2 = ctx.createGain();
         osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(3600, now);
-        osc2.frequency.exponentialRampToValueAtTime(2800, now + duration);
+        osc2.frequency.setValueAtTime(6000, now);
+        osc2.frequency.exponentialRampToValueAtTime(4800, now + dur);
         gain2.gain.setValueAtTime(0.15, now);
-        gain2.gain.exponentialRampToValueAtTime(0.001, now + duration);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + dur);
 
-        // 连接
+        // 高空气感泛音：10000Hz，制造空灵余韵
+        const osc3 = ctx.createOscillator();
+        const gain3 = ctx.createGain();
+        osc3.type = 'sine';
+        osc3.frequency.setValueAtTime(10000, now);
+        osc3.frequency.exponentialRampToValueAtTime(8000, now + dur * 0.8);
+        gain3.gain.setValueAtTime(0.08, now);
+        gain3.gain.exponentialRampToValueAtTime(0.001, now + dur * 0.8);
+
+        // 连接所有节点
         osc1.connect(gain1).connect(ctx.destination);
         osc2.connect(gain2).connect(ctx.destination);
+        osc3.connect(gain3).connect(ctx.destination);
 
         osc1.start(now);
         osc2.start(now);
-        osc1.stop(now + duration);
-        osc2.stop(now + duration);
+        osc3.start(now);
+        osc1.stop(now + dur);
+        osc2.stop(now + dur);
+        osc3.stop(now + dur);
     }
 
-    // 全局事件委托：监听所有包含玻璃样式的元素点击
+    // 全局事件委托：监听所有毛玻璃风格元素
     document.addEventListener('click', function(e) {
         const target = e.target.closest('.btn-link, .collage-card, .case-details summary, .glass-btn');
         if (target) {
-            playCrispClick();
+            playGlassTap();
         }
     });
 
-    // 为防止移动端浏览器挂起，首次触摸时也初始化
+    // 移动端首次触摸时激活 AudioContext
     document.addEventListener('touchstart', function initAudio() {
-        ensureAudioCtx();
+        getCtx();
         document.removeEventListener('touchstart', initAudio);
     }, { once: true });
 
