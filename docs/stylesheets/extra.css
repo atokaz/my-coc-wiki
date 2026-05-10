@@ -1,1 +1,25 @@
-
+@media (max-width: 768px) {
+    .md-nav--primary {
+        background-color: #1a1e26 !important;
+    }
+    .md-nav--primary .md-nav__title {
+        background-color: #0a0c0f !important;
+        color: #d0cfc0 !important;
+        box-shadow: none !important;
+    }
+    .md-nav--primary .md-nav__item {
+        background-color: transparent !important;
+        border-top: 1px solid rgba(255,255,255,0.05) !important;
+    }
+    .md-nav--primary .md-nav__link {
+        color: #c0b8a8 !important;
+        background-color: transparent !important;
+    }
+    .md-nav--primary .md-nav__link:hover {
+        background-color: rgba(255,255,255,0.05) !important;
+        color: #e8e2d2 !important;
+    }
+    .md-nav--primary .md-nav {
+        background-color: #1a1e26 !important;
+    }
+}
