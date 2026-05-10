@@ -1,3 +1,5 @@
+const SOUND_ENABLED = false;   // 改为 true 即可恢复音效
+
 (function() {
     'use strict';
 
