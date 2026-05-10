@@ -23,3 +23,16 @@
         background-color: #1a1e26 !important;
     }
 }
+
+.md-header, .md-tabs {
+    background: #1a2c1e !important;
+    border-bottom: none;
+}
+
+.md-header-nav__button, .md-tabs__link {
+    color: #e8e6df;
+}
+
+.md-search__form {
+    background-color: rgba(255, 255, 255, 0.15);
+}
