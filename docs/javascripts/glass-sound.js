@@ -28,6 +28,7 @@ const SOUND_ENABLED = false;   // 改为 true 即可恢复音效
 
     // 播放轻叩玻璃音效
     function playGlassTap() {
+        if (!SOUND_ENABLED) return;
         if (window.innerWidth <= 768) return;
         const ctx = getCtx();
         if (!ctx) return;
