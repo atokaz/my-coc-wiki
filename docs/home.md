@@ -263,7 +263,7 @@ blockquote p + p {
 
 <div class="collage-card">
     <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
-        <img src="images/奥丽维娅.png" alt="奥丽维娅" class="avatar-img" style="width:100px; height:100px; border-radius:8px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); object-fit: cover; background: transparent;">
+        <img src="images/olivia.png" alt="奥丽维娅" class="avatar-img" style="width:100px; height:100px; border-radius:8px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); object-fit: cover; background: transparent;">
         <div>
             <strong>奥丽维娅</strong>：苇下记社现任“不可见的主笔”
         </div>
