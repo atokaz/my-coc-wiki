@@ -1,46 +1,30 @@
-.md-header, .md-tabs {
-    background: #1a2c1e !important;  /* 深墨绿色，符合苇下记社氛围 */
-    border-bottom: none;
-}
+// 页面切换淡入动画（安全版）
+(function() {
+    'use strict';
 
-.md-header-nav__button, .md-tabs__link {
-    color: #e8e6df;
-}
-
-.md-search__form {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-var clickSound = new Audio('/my-coc-wiki/sounds/click.mp3');
-var audioEnabled = false;
-
-function playClickSound() {
-    if (audioEnabled) {
-        clickSound.play().catch(function(e) {});
+    // 避免与其他脚本冲突，只绑定导航链接
+    function addPageTransition() {
+        const navLinks = document.querySelectorAll('.md-nav__link, .md-tabs__link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                try {
+                    const main = document.querySelector('.md-main');
+                    if (main) {
+                        main.style.animation = 'none';
+                        main.offsetHeight; // 触发回流，重置动画
+                        main.style.animation = 'pageFade 0.3s ease-out';
+                    }
+                } catch (err) {
+                    // 静默失败，不影响页面功能
+                }
+            });
+        });
     }
-}
 
-function enableAudio() {
-    if (!audioEnabled) {
-        audioEnabled = true;
-        clickSound.play().then(function() {
-            clickSound.pause();
-            clickSound.currentTime = 0;
-        }).catch(function(e) {});
+    // 页面加载完成后执行
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addPageTransition);
+    } else {
+        addPageTransition();
     }
-}
-
-document.addEventListener('click', function(event) {
-    enableAudio();
-    playClickSound();
-});
-
-document.querySelectorAll('.md-nav__link, .md-tabs__link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        const main = document.querySelector('.md-main');
-        if (main) {
-            main.style.animation = 'none';
-            main.offsetHeight; 
-            main.style.animation = 'pageFade 0.3s ease-out';
-        }
-    });
-});
+})();
