@@ -13,7 +13,7 @@ html, body {
     color: #3a3528;
 }
 
-/* ========== 顶部导航栏：稍深的半透明毛玻璃 ========== */
+/* ========== 顶部导航栏：半透明深色毛玻璃 ========== */
 .md-header {
     background-color: rgba(90, 82, 70, 0.6) !important;
     backdrop-filter: blur(12px) !important;
@@ -25,14 +25,13 @@ html, body {
     color: #f0e6d2 !important;
 }
 
-/* ========== 左侧边栏：卡片化，颜色介于背景和报纸之间 ========== */
+/* ========== 左侧边栏：彻底去除白色背景 ========== */
 .md-sidebar--primary {
-    background-color: transparent !important;   /* 去除默认背景 */
+    background: transparent !important;    /* 强制透明 */
     backdrop-filter: none !important;
 }
-/* 给边栏内的导航容器加卡片 */
 .md-sidebar--primary .md-nav {
-    background: rgba(60, 54, 44, 0.7);          /* 中深灰褐色，半透明 */
+    background: rgba(60, 54, 44, 0.7);     /* 半透明深灰褐色卡片 */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.1);
@@ -42,6 +41,7 @@ html, body {
 }
 .md-nav__link {
     color: #d0c8b0 !important;
+    background: transparent !important;     /* 链接背景透明 */
 }
 .md-nav__link:hover {
     color: #f5eed9 !important;
@@ -49,7 +49,7 @@ html, body {
     border-radius: 4px;
 }
 
-/* ========== 报纸核心内容区：最深色块 ========== */
+/* ========== 报纸核心内容区 ========== */
 .md-content {
     max-width: 900px !important;
     margin: 2rem auto !important;
@@ -61,7 +61,6 @@ html, body {
     border-radius: 8px !important;
     color: #e8e2d2 !important;
 }
-
 .md-content__inner {
     background: transparent !important;
     box-shadow: none !important;
@@ -114,23 +113,21 @@ blockquote p + p {
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
-/* ========== 折叠面板：去掉默认样式，自定义毛玻璃 ========== */
+/* ========== 折叠面板：彻底去除白色背景 ========== */
 .case-details {
     margin: 1.5em 0;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 8px;
-    padding: 0;
-    background: transparent;               /* 无背景 */
-    backdrop-filter: none;
+    background: transparent !important;    /* 外层透明 */
 }
 .case-details summary {
-    list-style: none;                      /* 隐藏默认箭头 */
+    list-style: none;
     cursor: pointer;
     color: #f0e6d2;
     font-weight: bold;
     font-size: 1.1rem;
     padding: 0.8em 1rem;
-    background: rgba(255,255,255,0.06);    /* 标题条浅色玻璃 */
+    background: rgba(255,255,255,0.06);    /* 浅色玻璃，不是白色 */
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 8px;
@@ -142,7 +139,6 @@ blockquote p + p {
 .case-details summary:hover {
     background: rgba(255,255,255,0.1);
 }
-/* 自定义箭头 */
 .case-details summary::before {
     content: "▶";
     display: inline-block;
@@ -153,10 +149,9 @@ blockquote p + p {
 .case-details[open] summary::before {
     transform: rotate(90deg);
 }
-
-/* 打开后的内容区域：半透明深色玻璃 */
+/* 打开后的内容区：半透明深色玻璃 */
 .case-details .case-content {
-    background: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.25);           /* 深色透明，无白色 */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 0 0 8px 8px;
@@ -197,6 +192,12 @@ blockquote p + p {
     }
 }
 
+/* 强制消除任何残留的白色背景框（通用保底） */
+.md-sidebar__inner,
+.md-nav {
+    background: transparent !important;
+}
+
 /* 隐藏页脚 */
 .md-footer {
     display: none !important;
@@ -211,7 +212,7 @@ blockquote p + p {
     <p>「魑魅魍魎を原初の闇に還し、森羅万象の彼方を葦の根元に記す」</p>
 </blockquote>
 
-## Ξ 主笔 Ξ
+## 主笔
 
 <div class="collage-card">
     <ul style="margin:0; padding-left:1.5em;">
@@ -239,6 +240,9 @@ blockquote p + p {
 ## 驻社名录
 
 - **被卷入者**：请稍后，名录建设中…
+- <a href="/my-coc-wiki/roster/" class="btn-link" style="margin-top:0.8em;"> 查看完整名录</a>
+
+*档案持续更新中。最后更新：2025-05-09*
 - <a href="/my-coc-wiki/roster/" class="btn-link" style="margin-top:0.8em;"> 查看完整名录</a>
 
 *档案持续更新中。最后更新：2025-05-09*
