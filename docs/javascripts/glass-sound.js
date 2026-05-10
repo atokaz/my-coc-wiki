@@ -26,6 +26,7 @@
 
     // 播放轻叩玻璃音效
     function playGlassTap() {
+        if (window.innerWidth <= 768) return;
         const ctx = getCtx();
         if (!ctx) return;
 
