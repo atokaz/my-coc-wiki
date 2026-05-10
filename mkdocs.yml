@@ -22,7 +22,7 @@ docs_dir: docs
 nav:
   - 卷封: index.md
   - 档案室: home.md
-  - 往期刊载: archives.md
+  - 档案分类: categories.md
   - 驻社名录: roster.md
 
 extra_css:
