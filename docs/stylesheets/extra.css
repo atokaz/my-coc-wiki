@@ -1,6 +1,5 @@
 /* ========== 移动端全面修复 ========== */
 @media (max-width: 768px) {
-    /* 导航抽屉：深色毛玻璃 */
     .md-nav--primary {
         background: rgba(20, 18, 16, 0.95) !important;
         backdrop-filter: blur(20px);
@@ -35,7 +34,6 @@
         background: rgba(0,0,0,0.6) !important;
     }
 
-    /* 搜索框：移动端深色玻璃效果 */
     .md-search__overlay {
         background: rgba(0,0,0,0.5) !important;
         backdrop-filter: blur(4px);
@@ -64,7 +62,7 @@
     }
 }
 
-/* 顶部导航栏：全站统一的毛玻璃效果（桌面+移动） */
+/* ========== 顶部导航栏：全站统一的毛玻璃效果 ========== */
 .md-header, .md-tabs {
     background: rgba(90, 82, 70, 0.6) !important;
     backdrop-filter: blur(12px) !important;
@@ -79,9 +77,8 @@
     background-color: rgba(255,255,255,0.1);
 }
 
-/* 强制文档卡片堆叠效果 */
+/* ========== 文档卡片堆叠全局辅助（不干涉位移） ========== */
 .archive-stack .stack-card.shifted {
-    transform: translateY(45px) scale(0.98) !important;
     z-index: 0 !important;
 }
 .archive-stack .stack-card.active {
