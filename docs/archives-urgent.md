@@ -16,8 +16,7 @@ html, body { background-color: #e8e4db !important; margin:0;padding:0; font-fami
 .md-content__inner { background:transparent !important; box-shadow:none; border:none; padding:0; }
 h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:0.3em; }
 
-/* 卡片堆 */
-.archive-stack { position: relative; min-height: 280px; margin: 1.5rem 0; }
+.archive-stack { position: relative; min-height: 350px; margin: 1.5rem 0; }
 .stack-card {
   position: absolute; width: 100%; background: #3a3528;
   border: 1px solid rgba(255,255,255,0.15); border-radius:6px; padding:1.5rem;
@@ -25,11 +24,10 @@ h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:
   transition: transform 0.5s cubic-bezier(0.25,0.1,0.25,1), box-shadow 0.3s;
   z-index:1; cursor:pointer;
 }
-.stack-card:hover { transform: translateY(-12px) !important; z-index:20 !important; box-shadow:0 10px 25px rgba(0,0,0,0.6); }
+.stack-card:hover { transform: translateY(-8px) !important; z-index:20 !important; box-shadow:0 10px 25px rgba(0,0,0,0.6); }
 
-/* 被推开的卡片：向下滑动，仍部分遮盖 */
 .stack-card.shifted {
-  transform: translateY(45px) scale(0.98);
+  transform: translateY(80px) scale(0.98);
   z-index:0 !important;
 }
 
@@ -48,8 +46,8 @@ h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:
 <h1>特急编集 · 正在追踪</h1>
 
 <div class="archive-stack">
-  <!-- 第一张卡片堆在上面，top 负值让它覆盖第二张一点 -->
-  <div class="stack-card" style="top: -15px;" onclick="toggleCard(this)">
+  <!-- 卡片1：在底部 -->
+  <div class="stack-card" style="top: 0;" onclick="toggleCard(this)">
     <span class="tag">特急编集</span>
     <h3>《虚境梦潮》</h3>
     <p style="color:#b0a090;">近代·美国</p>
@@ -59,8 +57,8 @@ h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:
     </div>
   </div>
 
-  <!-- 第二张卡片正常位置 top:0 -->
-  <div class="stack-card" style="top: 0;" onclick="toggleCard(this)">
+  <!-- 卡片2：堆在卡片1上方 -->
+  <div class="stack-card" style="top: 30px;" onclick="toggleCard(this)">
     <span class="tag">特急编集</span>
     <h3>《圣维塔利斯疗养院》</h3>
     <p style="color:#b0a090;">近现代·瑞士</p>
