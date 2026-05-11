@@ -4,94 +4,172 @@ hide:
 ---
 
 <style>
-html, body { background-color: #e8e4db !important; margin:0;padding:0; font-family: 'Noto Serif SC', serif; color: #3a3528; }
-.md-header { background: rgba(90,82,70,0.6) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.1); }
+/* ========== 全局 ========== */
+html, body {
+    background-color: #e8e4db !important;
+    margin: 0; padding: 0;
+    font-family: 'Noto Serif SC', serif;
+    color: #3a3528;
+}
+
+/* ========== 顶部导航栏 ========== */
+.md-header {
+    background: rgba(90,82,70,0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+/* ========== 左侧边栏修复 ========== */
 .md-sidebar--primary { background: transparent !important; }
-.md-sidebar--primary .md-sidebar__inner { background: rgba(55,48,40,0.7) !important; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.2rem; margin:1rem 0.5rem; box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+.md-sidebar--primary .md-sidebar__inner {
+    background: rgba(55,48,40,0.7) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin: 1rem 0.5rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
 .md-sidebar__inner * { background-color: transparent !important; box-shadow: none !important; }
-.md-nav__title { color: #f5eed9 !important; font-weight:bold; border-bottom: 1px solid rgba(255,255,255,0.15); }
-.md-nav__link { color: #d0c8b0 !important; background:transparent; }
-.md-nav__link:hover { color: #f5eed9 !important; background: rgba(255,255,255,0.06); border-radius:4px; }
-.md-content { max-width: 1000px !important; margin:2rem auto !important; background-color: #2c2820 !important; background-image: url('https://www.transparenttextures.com/patterns/crepe-paper.png'); padding: 2.5rem !important; box-shadow: 0 0 30px rgba(0,0,0,0.5); border: 1px solid #5a5243; border-radius:8px; color: #e8e2d2; }
-.md-content__inner { background:transparent !important; box-shadow:none; border:none; padding:0; }
-h1 { color: #f5eed9 !important; border-bottom:1px solid #5a5243; padding-bottom:0.3em; }
+.md-nav__title { color: #f5eed9 !important; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.md-nav__link { color: #d0c8b0 !important; background: transparent; }
+.md-nav__link:hover { color: #f5eed9 !important; background: rgba(255,255,255,0.06); border-radius: 4px; }
 
-/* 卡片堆 */
-.archive-stack { position: relative; min-height: 280px; margin: 1.5rem 0; }
+/* ========== 报纸内容区 ========== */
+.md-content {
+    max-width: 1000px !important;
+    margin: 2rem auto !important;
+    background-color: #2c2820 !important;
+    background-image: url('https://www.transparenttextures.com/patterns/crepe-paper.png');
+    padding: 2.5rem !important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 1px solid #5a5243;
+    border-radius: 8px;
+    color: #e8e2d2;
+}
+.md-content__inner { background: transparent !important; box-shadow: none; border: none; padding: 0; }
+h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom: 0.3em; }
+
+/* ========== 卡片堆叠容器 ========== */
+.archive-stack {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+}
+
+/* ========== 单个卡片：重叠并增加高度 ========== */
 .stack-card {
-  position: absolute; width: 100%; background: #3a3528;
-  border: 1px solid rgba(255,255,255,0.15); border-radius:6px; padding:1.5rem;
-  color: #e8e2d2; box-shadow:0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.5s cubic-bezier(0.25,0.1,0.25,1), box-shadow 0.3s;
-  z-index:1; cursor:pointer;
+    background: #3a3528;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 0.8rem 1.5rem 1.5rem 1.5rem;
+    color: #e8e2d2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin-top: -80px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    z-index: 1;
+    min-height: 180px;
+    cursor: pointer;                 /* 整个卡片都是手型 */
 }
-.stack-card:hover { transform: translateY(-12px) !important; z-index:20 !important; box-shadow:0 10px 25px rgba(0,0,0,0.6); }
+.stack-card:first-child {
+    margin-top: 0;
+}
+.stack-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    z-index: 10;
+}
 
-/* 被推开的卡片：向下滑动，仍部分遮盖 */
-.stack-card.shifted {
-  transform: translateY(45px) scale(0.98);
-  z-index:0 !important;
+/* ========== 隐藏的 checkbox ========== */
+.card-toggle {
+    display: none;
 }
 
-.stack-card.active {
-  transform: translateY(0) scale(1);
-  z-index:10 !important;
-  border-color: rgba(255,255,255,0.35);
+/* ========== 标题栏 ========== */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    user-select: none;
+    pointer-events: none;           /* 让点击穿透到 .stack-card，由 JS 捕捉 */
 }
-.tag { font-size:0.75rem; padding:0.2em 0.6em; border-radius:4px; background:rgba(255,255,255,0.1); color:#c0b8a8; }
-.preview-content { display:none; margin-top:0.8em; }
-.stack-card.active .preview-content { display:block; }
-.btn-link { display:inline-block; background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:0.5em 1.2em; color:#e8e2d2 !important; text-decoration:none; margin-top:0.6em; transition:transform 0.2s, box-shadow 0.2s; }
-.btn-link:hover { transform:translateY(-2px); }
+
+/* ========== 预览内容（默认隐藏） ========== */
+.preview-content {
+    display: none;
+    color: #c0b8a8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0.8em;
+    pointer-events: auto;           /* 恢复内部按钮的点击 */
+}
+
+.card-toggle:checked ~ .preview-content {
+    display: block;
+}
+
+/* 按钮 */
+.btn-link {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 0.5em 1.2em;
+    color: #e8e2d2 !important;
+    text-decoration: none !important;
+    margin-top: 0.6em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    z-index: 2;                     /* 确保按钮在最上层，可被点击 */
+}
+.btn-link:hover { transform: translateY(-2px); }
+
+/* 卡片内标题和地点 */
+.stack-card h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #f0e6d2;
+    pointer-events: none;           /* 让点击穿透 */
+}
+.stack-card .meta {
+    font-size: 0.85rem;
+    color: #b0a090;
+    margin: 0;
+    text-align: right;
+    pointer-events: none;
+}
 </style>
 
 <h1>资料归集 · 待开启</h1>
 
-<div class="archive-stack">
-  <!-- 第一张卡片堆在上面，top 负值让它覆盖第二张一点 -->
-  <div class="stack-card" style="top: -15px;" onclick="toggleCard(this)">
-    <span class="tag">资料归集</span>
-    <h3>《谢娘娘点化》</h3>
-    <p style="color:#b0a090;">现代·中国</p>
-    <div class="preview-content">
-      <p>南无观世音菩萨。</p>
-      <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+<div class="archive-stack" id="stack">
+    <!-- 谢娘娘点化 -->
+    <div class="stack-card" onclick="toggleCard(this)">
+        <input type="checkbox" id="card2" class="card-toggle">
+        <div class="card-header">
+            <h3>《谢娘娘点化》</h3>
+            <p class="meta">现代·中国</p>
+        </div>
+        <div class="preview-content">
+            <p>南无观世音菩萨。</p>
+            <a href="/my-coc-wiki/home/" class="btn-link" onclick="event.stopPropagation()">→ 翻阅档案</a>
+        </div>
     </div>
-  </div>
 </div>
 
-<p style="margin-top:2em;">
-  <a href="/my-coc-wiki/categories/" class="btn-link">← 返回档案分类</a>
+<p style="margin-top: 2em;">
+    <a href="/my-coc-wiki/categories/" class="btn-link">← 返回档案分类</a>
 </p>
 
 <script>
-let currentActive = null, currentStack = null;
+// 极简卡片展开/收起逻辑，点击整张卡片（除按钮外）切换
 function toggleCard(card) {
-  const stack = card.closest('.archive-stack');
-  if (!stack) return;
-  if (card === currentActive) {
-    card.classList.remove('active');
-    currentActive = null; currentStack = null;
-    resetStack(stack);
-    return;
-  }
-  if (currentActive && currentStack) {
-    currentActive.classList.remove('active');
-    resetStack(currentStack);
-  }
-  card.classList.add('active');
-  currentActive = card; currentStack = stack;
-  applyShifts(stack, card);
-}
-function applyShifts(stack, activeCard) {
-  const cards = Array.from(stack.querySelectorAll('.stack-card'));
-  const activeIndex = cards.indexOf(activeCard);
-  cards.forEach((card, index) => {
-    card.classList.remove('shifted');
-    if (index < activeIndex) card.classList.add('shifted');
-  });
-}
-function resetStack(stack) {
-  stack.querySelectorAll('.stack-card').forEach(card => card.classList.remove('shifted'));
+    const checkbox = card.querySelector('.card-toggle');
+    if (checkbox) {
+        checkbox.checked = !checkbox.checked;
+    }
 }
 </script>
