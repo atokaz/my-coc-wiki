@@ -78,3 +78,16 @@
 .md-search__form {
     background-color: rgba(255,255,255,0.1);
 }
+
+/* 强制文档卡片堆叠效果 */
+.archive-stack .stack-card.shifted {
+    transform: translateY(45px) scale(0.98) !important;
+    z-index: 0 !important;
+}
+.archive-stack .stack-card.active {
+    z-index: 10 !important;
+    border-color: rgba(255,255,255,0.35) !important;
+}
+.archive-stack .stack-card:hover {
+    z-index: 20 !important;
+}
