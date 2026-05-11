@@ -93,14 +93,25 @@ function toggleCard(card) {
   applyShifts(stack, card);
 }
 function applyShifts(stack, activeCard) {
-  const cards = Array.from(stack.querySelectorAll('.stack-card'));
-  const activeIndex = cards.indexOf(activeCard);
-  cards.forEach((card, index) => {
-    card.classList.remove('shifted');
-    if (index < activeIndex) card.classList.add('shifted');
-  });
+    const cards = Array.from(stack.querySelectorAll('.stack-card'));
+    const activeIndex = cards.indexOf(activeCard);
+    cards.forEach((card, index) => {
+        card.classList.remove('shifted');
+        if (index < activeIndex) {
+            // 上方的卡片向下推
+            card.classList.add('shifted');
+        } else if (index > activeIndex) {
+            // 下方的卡片向下推更多，让出完整空间
+            card.style.transform = `translateY(${80 + (index - activeIndex) * 20}px) scale(0.98)`;
+            card.style.zIndex = '0';
+        }
+    });
 }
 function resetStack(stack) {
-  stack.querySelectorAll('.stack-card').forEach(card => card.classList.remove('shifted'));
+    stack.querySelectorAll('.stack-card').forEach(card => {
+        card.classList.remove('shifted');
+        card.style.transform = '';   // 清除内联 transform
+        card.style.zIndex = '';
+    });
 }
 </script>
