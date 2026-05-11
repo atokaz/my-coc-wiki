@@ -77,69 +77,58 @@ h1 {
     padding-bottom: 0.3em;
 }
 
-/* ========== 卡片堆容器 ========== */
-.archive-stack {
-    position: relative;
-    min-height: 400px;
+/* ========== 卡片列表（普通垂直排列，无绝对定位） ========== */
+.archive-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     margin: 1.5rem 0;
 }
 
-/* ========== 每张卡片的包装容器（让卡片能够绝对定位） ========== */
-.card-wrapper {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    transition: transform 0.5s cubic-bezier(0.25,0.1,0.25,1);
-}
-
-/* ========== 卡片基础样式 ========== */
-.stack-card {
+/* ========== 每张卡片的包装 ========== */
+.card-item {
     background: #3a3528;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 6px;
     padding: 1.5rem;
-    color: #e8e2d2;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.card-item:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
+}
+
+/* ========== 彻底清除 details/summary 的默认样式 ========== */
+.card-item details {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+}
+.card-item summary {
+    list-style: none !important;
     cursor: pointer;
-    transition: box-shadow 0.3s;
+    outline: none !important;
+    background: transparent !important;
+    border: none !important;
+    /* 去掉默认的小三角（针对不同浏览器） */
+}
+.card-item summary::-webkit-details-marker {
+    display: none !important;
+}
+.card-item summary::marker {
+    display: none !important;
 }
 
-/* 悬停效果 */
-.card-wrapper:hover {
-    z-index: 20 !important;
-}
-.card-wrapper:hover .stack-card {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-}
-
-/* ========== 折叠面板样式 ========== */
-.card-wrapper details {
-    height: 100%;
-}
-.card-wrapper details[open] > summary {
+/* 打开时, 摘要与内容之间的间距 */
+.card-item details[open] > summary {
     margin-bottom: 0.8em;
-}
-.card-wrapper summary {
-    list-style: none;
-    cursor: pointer;
-    outline: none;
-}
-.card-wrapper summary::-webkit-details-marker {
-    display: none;
 }
 
 /* 预览内容 */
 .preview-content {
     margin-top: 0.8em;
-}
-
-/* 标签 */
-.tag {
-    font-size: 0.75rem;
-    padding: 0.2em 0.6em;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.1);
-    color: #c0b8a8;
+    color: #d0c8b0;
 }
 
 /* 按钮 */
@@ -159,57 +148,46 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* ========== 滑动逻辑：当某张卡片被打开时，它下面的卡片向下移动 ========== */
-/* 默认所有卡片都在原始位置，由 top 属性决定 */
-/* 当某张卡片的 details 处于打开状态时，它后面的所有兄弟卡片都向下平移 */
-.card-wrapper:has(details[open]) ~ .card-wrapper {
-    transform: translateY(80px);
+/* 标题样式 */
+.card-item h3 {
+    margin: 0.3em 0;
+    color: #f0e6d2;
 }
-/* 如果后面还有卡片，再增加一点距离，形成阶梯 */
-.card-wrapper:has(details[open]) ~ .card-wrapper ~ .card-wrapper {
-    transform: translateY(110px);
-}
-/* 更多张卡片可以叠加 */
-.card-wrapper:has(details[open]) ~ .card-wrapper ~ .card-wrapper ~ .card-wrapper {
-    transform: translateY(140px);
+.card-item .meta {
+    color: #b0a090;
+    font-size: 0.85rem;
 }
 </style>
 
 <h1>特急编集 · 正在追踪</h1>
 
-<div class="archive-stack">
+<div class="archive-list">
     <!-- 卡片1：虚境梦潮 -->
-    <div class="card-wrapper" style="top: 0; z-index: 1;">
-        <div class="stack-card">
-            <details>
-                <summary>
-                    <span class="tag">特急编集</span>
-                    <h3 style="margin:0.3em 0;">《虚境梦潮》</h3>
-                    <p style="color:#b0a090; font-size:0.85rem;">近代·美国</p>
-                </summary>
-                <div class="preview-content">
-                    <p>梦境与现实在潮水中模糊了边界。</p>
-                    <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
-                </div>
-            </details>
-        </div>
+    <div class="card-item">
+        <details>
+            <summary>
+                <h3>《虚境梦潮》</h3>
+                <p class="meta">近代·美国</p>
+            </summary>
+            <div class="preview-content">
+                <p>梦境与现实在潮水中模糊了边界。</p>
+                <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+            </div>
+        </details>
     </div>
 
     <!-- 卡片2：圣维塔利斯疗养院 -->
-    <div class="card-wrapper" style="top: 30px; z-index: 2;">
-        <div class="stack-card">
-            <details>
-                <summary>
-                    <span class="tag">特急编集</span>
-                    <h3 style="margin:0.3em 0;">《圣维塔利斯疗养院》</h3>
-                    <p style="color:#b0a090; font-size:0.85rem;">近现代·瑞士</p>
-                </summary>
-                <div class="preview-content">
-                    <p>三个外国人相遇的起始。</p>
-                    <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
-                </div>
-            </details>
-        </div>
+    <div class="card-item">
+        <details>
+            <summary>
+                <h3>《圣维塔利斯疗养院》</h3>
+                <p class="meta">近现代·瑞士</p>
+            </summary>
+            <div class="preview-content">
+                <p>三个外国人相遇的起始。</p>
+                <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+            </div>
+        </details>
     </div>
 </div>
 
