@@ -51,38 +51,37 @@ html, body {
 .md-content__inner { background: transparent !important; box-shadow: none; border: none; padding: 0; }
 h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom: 0.3em; }
 
-/* ========== 卡片堆叠容器（垂直排列） ========== */
+/* ========== 卡片堆叠容器 ========== */
 .archive-stack {
     display: flex;
     flex-direction: column;
     margin: 1.5rem 0;
 }
 
-/* ========== 单个卡片：轻微重叠 ========== */
+/* ========== 单个卡片：重叠三分之二 ========== */
 .stack-card {
     background: #3a3528;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 6px;
-    padding: 1.5rem;
+    padding: 0.8rem 1.5rem 1.5rem 1.5rem;  /* 上边距缩小 */
     color: #e8e2d2;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    margin-top: -8px;   /* 重叠8px，露出下层标题 */
+    margin-top: -60px;   /* 重叠三分之二，只露标题行 */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     z-index: 1;
 }
-/* 第一张卡片不需要负 margin */
 .stack-card:first-child {
     margin-top: 0;
 }
-/* 悬停时轻微上浮，不盖住下方卡片 */
+/* 悬停时轻微上浮 */
 .stack-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     z-index: 10;
 }
 
-/* ========== 彻底清除 details/summary 默认样式 ========== */
+/* ========== 完全重写 details/summary ========== */
 .stack-card details {
     background: transparent !important;
     border: none !important;
@@ -95,21 +94,28 @@ h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom
     background: transparent !important;
     border: none !important;
     color: inherit;
+    display: flex;                /* 让标题和地点同行 */
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0;
+    margin: 0;
 }
+/* 去掉默认三角 */
 .stack-card summary::-webkit-details-marker,
 .stack-card summary::marker {
     display: none !important;
     content: none !important;
 }
-.stack-card summary:focus,
-.stack-card summary:focus-visible {
+/* 去掉 focus 蓝框 */
+.summary:focus,
+.summary:focus-visible {
     outline: none !important;
     box-shadow: none !important;
     border: none !important;
 }
 /* 展开后标题下方间距 */
 .stack-card details[open] > summary {
-    margin-bottom: 0.8em;
+    margin-bottom: 0.5em;
 }
 
 /* ========== 预览内容 ========== */
@@ -135,8 +141,17 @@ h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom
 .btn-link:hover { transform: translateY(-2px); }
 
 /* 卡片内标题和地点 */
-.stack-card h3 { margin: 0 0 0.2em 0; color: #f0e6d2; }
-.stack-card .meta { font-size: 0.85rem; color: #b0a090; margin: 0; }
+.stack-card h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #f0e6d2;
+}
+.stack-card .meta {
+    font-size: 0.85rem;
+    color: #b0a090;
+    margin: 0;
+    text-align: right;
+}
 </style>
 
 <h1>特急编集 · 正在追踪</h1>
