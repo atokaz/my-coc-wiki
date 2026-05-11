@@ -14,44 +14,27 @@ html, body {
 
 /* ========== 顶部导航栏 ========== */
 .md-header {
-    background: rgba(90, 82, 70, 0.6) !important;
+    background: rgba(90,82,70,0.6) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border-bottom: 1px solid rgba(0,0,0,0.1) !important;
 }
 
 /* ========== 左侧边栏修复 ========== */
-.md-sidebar--primary {
-    background: transparent !important;
-}
+.md-sidebar--primary { background: transparent !important; }
 .md-sidebar--primary .md-sidebar__inner {
-    background: rgba(55, 48, 40, 0.7) !important;
+    background: rgba(55,48,40,0.7) !important;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     padding: 1.2rem;
     margin: 1rem 0.5rem;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
-.md-sidebar__inner * {
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-.md-nav__title {
-    color: #f5eed9 !important;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-}
-.md-nav__link {
-    color: #d0c8b0 !important;
-    background: transparent;
-}
-.md-nav__link:hover {
-    color: #f5eed9 !important;
-    background: rgba(255,255,255,0.06);
-    border-radius: 4px;
-}
+.md-sidebar__inner * { background-color: transparent !important; box-shadow: none !important; }
+.md-nav__title { color: #f5eed9 !important; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.md-nav__link { color: #d0c8b0 !important; background: transparent; }
+.md-nav__link:hover { color: #f5eed9 !important; background: rgba(255,255,255,0.06); border-radius: 4px; }
 
 /* ========== 报纸内容区 ========== */
 .md-content {
@@ -65,70 +48,75 @@ html, body {
     border-radius: 8px;
     color: #e8e2d2;
 }
-.md-content__inner {
-    background: transparent !important;
-    box-shadow: none;
-    border: none;
-    padding: 0;
-}
-h1 {
-    color: #f5eed9 !important;
-    border-bottom: 1px solid #5a5243;
-    padding-bottom: 0.3em;
-}
+.md-content__inner { background: transparent !important; box-shadow: none; border: none; padding: 0; }
+h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom: 0.3em; }
 
-/* ========== 卡片列表（普通垂直排列，无绝对定位） ========== */
-.archive-list {
+/* ========== 卡片堆叠容器（垂直排列） ========== */
+.archive-stack {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     margin: 1.5rem 0;
 }
 
-/* ========== 每张卡片的包装 ========== */
-.card-item {
+/* ========== 单个卡片：轻微重叠 ========== */
+.stack-card {
     background: #3a3528;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 6px;
     padding: 1.5rem;
+    color: #e8e2d2;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: box-shadow 0.2s, transform 0.2s;
+    margin-top: -8px;   /* 重叠8px，露出下层标题 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    z-index: 1;
 }
-.card-item:hover {
+/* 第一张卡片不需要负 margin */
+.stack-card:first-child {
+    margin-top: 0;
+}
+/* 悬停时轻微上浮，不盖住下方卡片 */
+.stack-card:hover {
+    transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    transform: translateY(-2px);
+    z-index: 10;
 }
 
-/* ========== 彻底清除 details/summary 的默认样式 ========== */
-.card-item details {
+/* ========== 彻底清除 details/summary 默认样式 ========== */
+.stack-card details {
     background: transparent !important;
     border: none !important;
     outline: none !important;
 }
-.card-item summary {
+.stack-card summary {
     list-style: none !important;
     cursor: pointer;
     outline: none !important;
     background: transparent !important;
     border: none !important;
-    /* 去掉默认的小三角（针对不同浏览器） */
+    color: inherit;
 }
-.card-item summary::-webkit-details-marker {
+.stack-card summary::-webkit-details-marker,
+.stack-card summary::marker {
     display: none !important;
+    content: none !important;
 }
-.card-item summary::marker {
-    display: none !important;
+.stack-card summary:focus,
+.stack-card summary:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
-
-/* 打开时, 摘要与内容之间的间距 */
-.card-item details[open] > summary {
+/* 展开后标题下方间距 */
+.stack-card details[open] > summary {
     margin-bottom: 0.8em;
 }
 
-/* 预览内容 */
+/* ========== 预览内容 ========== */
 .preview-content {
-    margin-top: 0.8em;
-    color: #d0c8b0;
+    color: #c0b8a8;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 /* 按钮 */
@@ -144,26 +132,18 @@ h1 {
     margin-top: 0.6em;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-.btn-link:hover {
-    transform: translateY(-2px);
-}
+.btn-link:hover { transform: translateY(-2px); }
 
-/* 标题样式 */
-.card-item h3 {
-    margin: 0.3em 0;
-    color: #f0e6d2;
-}
-.card-item .meta {
-    color: #b0a090;
-    font-size: 0.85rem;
-}
+/* 卡片内标题和地点 */
+.stack-card h3 { margin: 0 0 0.2em 0; color: #f0e6d2; }
+.stack-card .meta { font-size: 0.85rem; color: #b0a090; margin: 0; }
 </style>
 
 <h1>特急编集 · 正在追踪</h1>
 
-<div class="archive-list">
-    <!-- 卡片1：虚境梦潮 -->
-    <div class="card-item">
+<div class="archive-stack">
+    <!-- 虚境梦潮 -->
+    <div class="stack-card">
         <details>
             <summary>
                 <h3>《虚境梦潮》</h3>
@@ -176,8 +156,8 @@ h1 {
         </details>
     </div>
 
-    <!-- 卡片2：圣维塔利斯疗养院 -->
-    <div class="card-item">
+    <!-- 圣维塔利斯疗养院 -->
+    <div class="stack-card">
         <details>
             <summary>
                 <h3>《圣维塔利斯疗养院》</h3>
