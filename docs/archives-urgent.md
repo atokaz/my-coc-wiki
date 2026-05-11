@@ -58,71 +58,66 @@ h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom
     margin: 1.5rem 0;
 }
 
-/* ========== 单个卡片：重叠三分之二 ========== */
+/* ========== 单个卡片：重叠并增加高度 ========== */
 .stack-card {
     background: #3a3528;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 6px;
-    padding: 0.8rem 1.5rem 1.5rem 1.5rem;  /* 上边距缩小 */
+    padding: 0.8rem 1.5rem 1.5rem 1.5rem;
     color: #e8e2d2;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    margin-top: -60px;   /* 重叠三分之二，只露标题行 */
+    margin-top: -80px;             /* 重叠三分之二，只露标题行 */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     z-index: 1;
+    min-height: 180px;            /* 比之前多出约三分之一高度 */
 }
 .stack-card:first-child {
     margin-top: 0;
 }
-/* 悬停时轻微上浮 */
 .stack-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     z-index: 10;
 }
 
-/* ========== 完全重写 details/summary ========== */
-.stack-card details {
-    background: transparent !important;
-    border: none !important;
-    outline: none !important;
-}
-.stack-card summary {
-    list-style: none !important;
-    cursor: pointer;
-    outline: none !important;
-    background: transparent !important;
-    border: none !important;
-    color: inherit;
-    display: flex;                /* 让标题和地点同行 */
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0;
-    margin: 0;
-}
-/* 去掉默认三角 */
-.stack-card summary::-webkit-details-marker,
-.stack-card summary::marker {
-    display: none !important;
-    content: none !important;
-}
-/* 去掉 focus 蓝框 */
-.summary:focus,
-.summary:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-/* 展开后标题下方间距 */
-.stack-card details[open] > summary {
-    margin-bottom: 0.5em;
+/* ========== 隐藏的 checkbox ========== */
+.card-toggle {
+    display: none;                /* 完全隐藏 */
 }
 
-/* ========== 预览内容 ========== */
+/* ========== 标题栏（可点击） ========== */
+.card-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    cursor: pointer;
+    user-select: none;            /* 防止文字选中 */
+    padding: 0;
+    margin: 0;
+    /* 没有任何边框或轮廓 */
+}
+
+/* ========== 预览内容（默认隐藏） ========== */
 .preview-content {
+    display: none;
     color: #c0b8a8;
     font-size: 0.95rem;
     line-height: 1.5;
+    margin-top: 0.8em;
+}
+
+/* 当 checkbox 被选中时，显示后面的预览内容 */
+.card-toggle:checked ~ .preview-content {
+    display: block;
+}
+
+/* 去除所有 focus 样式 */
+.card-label:focus,
+.card-label:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 /* 按钮 */
@@ -159,30 +154,28 @@ h1 { color: #f5eed9 !important; border-bottom: 1px solid #5a5243; padding-bottom
 <div class="archive-stack">
     <!-- 虚境梦潮 -->
     <div class="stack-card">
-        <details>
-            <summary>
-                <h3>《虚境梦潮》</h3>
-                <p class="meta">近代·美国</p>
-            </summary>
-            <div class="preview-content">
-                <p>梦境与现实在潮水中模糊了边界。</p>
-                <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
-            </div>
-        </details>
+        <input type="checkbox" id="card1" class="card-toggle">
+        <label for="card1" class="card-label">
+            <h3>《虚境梦潮》</h3>
+            <p class="meta">近代·美国</p>
+        </label>
+        <div class="preview-content">
+            <p>梦境与现实在潮水中模糊了边界。</p>
+            <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+        </div>
     </div>
 
     <!-- 圣维塔利斯疗养院 -->
     <div class="stack-card">
-        <details>
-            <summary>
-                <h3>《圣维塔利斯疗养院》</h3>
-                <p class="meta">近现代·瑞士</p>
-            </summary>
-            <div class="preview-content">
-                <p>三个外国人相遇的起始。</p>
-                <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
-            </div>
-        </details>
+        <input type="checkbox" id="card2" class="card-toggle">
+        <label for="card2" class="card-label">
+            <h3>《圣维塔利斯疗养院》</h3>
+            <p class="meta">近现代·瑞士</p>
+        </label>
+        <div class="preview-content">
+            <p>三个外国人相遇的起始。</p>
+            <a href="/my-coc-wiki/home/" class="btn-link">→ 翻阅档案</a>
+        </div>
     </div>
 </div>
 
